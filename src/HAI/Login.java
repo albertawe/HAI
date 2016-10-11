@@ -19,8 +19,9 @@ PreparedStatement pst=null;
      * Creates new form Login
      */
     public Login() {
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
         initComponents();
-        setLocationRelativeTo(null);
+                //setLocationRelativeTo(null);
                  }
 
     /**
@@ -52,6 +53,9 @@ PreparedStatement pst=null;
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login Form");
+        setAlwaysOnTop(true);
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setLocation(new java.awt.Point(0, 0));
         setMaximumSize(new java.awt.Dimension(1280, 766));
         setMinimumSize(new java.awt.Dimension(1280, 766));
         setPreferredSize(new java.awt.Dimension(1280, 766));
@@ -140,19 +144,19 @@ PreparedStatement pst=null;
         jLabel5.setForeground(new java.awt.Color(153, 153, 153));
         jLabel5.setText("Develop by");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(420, 460, 150, 25);
+        jLabel5.setBounds(370, 470, 150, 25);
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logo-Hai.png"))); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HAI/Logo-Hai.png"))); // NOI18N
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(530, 400, 240, 140);
+        jLabel6.setBounds(510, 380, 250, 210);
 
-        jLabel7.setIcon(new javax.swing.ImageIcon("E:\\sa.png")); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HAI/Logo-Haiii.png"))); // NOI18N
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(450, 110, 260, 160);
+        jLabel7.setBounds(490, 110, 260, 170);
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hero.jpg"))); // NOI18N
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(0, 0, 1320, 780);
+        jLabel3.setBounds(0, 0, 1370, 776);
 
         jLabel4.setFont(new java.awt.Font("TeXGyreAdventor", 0, 18)); // NOI18N
         jLabel4.setText("username");
@@ -160,8 +164,9 @@ PreparedStatement pst=null;
         jLabel4.setBounds(440, 300, 110, 20);
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+    
     private void txtUserNameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtUserNameMouseClicked
         // TODO add your handling code here:
      
@@ -271,10 +276,19 @@ PreparedStatement pst=null;
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            
             @Override
-            public void run() {
-                new Login().setVisible(true);
+            public void run()  {
+                    try{
+                Thread.sleep(4500); 
             }
+                    catch(Exception e)
+                    {
+                        
+                    }
+                new Login().setVisible(true);
+            
+        }
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
