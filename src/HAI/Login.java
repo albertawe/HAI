@@ -90,7 +90,7 @@ PreparedStatement pst=null;
             }
         });
         getContentPane().add(txtUserName);
-        txtUserName.setBounds(540, 300, 166, 15);
+        txtUserName.setBounds(540, 300, 166, 17);
 
         txtPassword.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(153, 153, 153)));
         txtPassword.setOpaque(false);
@@ -105,10 +105,9 @@ PreparedStatement pst=null;
             }
         });
         getContentPane().add(txtPassword);
-        txtPassword.setBounds(540, 330, 166, 15);
+        txtPassword.setBounds(540, 330, 166, 17);
 
         btnOK.setBackground(new java.awt.Color(0, 0, 0));
-        btnOK.setIcon(new javax.swing.ImageIcon(getClass().getResource("/login-button-png-6.png"))); // NOI18N
         btnOK.setBorder(null);
         btnOK.setOpaque(false);
         btnOK.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -125,7 +124,6 @@ PreparedStatement pst=null;
         btnOK.setBounds(540, 360, 60, 30);
 
         btnCancel.setForeground(new java.awt.Color(240, 240, 240));
-        btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/login-button-png-6.jpg"))); // NOI18N
         btnCancel.setToolTipText("");
         btnCancel.setBorder(null);
         btnCancel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -153,10 +151,8 @@ PreparedStatement pst=null;
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HAI/Logo-Haiii.png"))); // NOI18N
         getContentPane().add(jLabel7);
         jLabel7.setBounds(490, 110, 260, 170);
-
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hero.jpg"))); // NOI18N
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(0, 0, 1370, 776);
+        jLabel3.setBounds(0, 0, 1370, 0);
 
         jLabel4.setFont(new java.awt.Font("TeXGyreAdventor", 0, 18)); // NOI18N
         jLabel4.setText("username");

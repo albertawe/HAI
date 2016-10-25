@@ -4,17 +4,31 @@
  * and open the template in the editor.
  */
 package HAI;
+
+import java.awt.HeadlessException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author ACER-PC
  */
 public class MainMenu extends javax.swing.JFrame {
+Connection con=null;
+ResultSet rs=null;
+PreparedStatement pst=null;
 
     /**
      * Creates new form MainMenu
      */
     public MainMenu() {
         initComponents();
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 
     /**
@@ -26,21 +40,492 @@ public class MainMenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jTabbedPane2 = new javax.swing.JTabbedPane();
+        jPanel4 = new javax.swing.JPanel();
+        jPanel6 = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        btninsert = new javax.swing.JButton();
+        jLabel21 = new javax.swing.JLabel();
+        btnemail = new javax.swing.JTextField();
+        btnnama = new javax.swing.JTextField();
+        btnklmn = new javax.swing.JTextField();
+        btntgl = new javax.swing.JTextField();
+        btnalamat = new javax.swing.JTextField();
+        btnkota = new javax.swing.JTextField();
+        btnno = new javax.swing.JTextField();
+        btnid = new javax.swing.JTextField();
+        btnidpsiko = new javax.swing.JTextField();
+        btnsedia = new javax.swing.JTextField();
+        btngaji = new javax.swing.JTextField();
+        btnpendi = new javax.swing.JTextField();
+        btnkeluarga = new javax.swing.JTextField();
+        btndream = new javax.swing.JTextField();
+        btnkeahlian = new javax.swing.JTextField();
+        combokate = new javax.swing.JComboBox<>();
+        btntpt1 = new javax.swing.JTextField();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jTabbedPane2.addTab("View Data                                      ", jPanel4);
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1025, Short.MAX_VALUE)
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 569, Short.MAX_VALUE)
+        );
+
+        jTabbedPane2.addTab("Edit data                                                     ", jPanel6);
+
+        jPanel5.setLayout(null);
+
+        jLabel1.setText("Daftar Pelamar Baru");
+        jPanel5.add(jLabel1);
+        jLabel1.setBounds(409, 12, 129, 16);
+
+        jLabel11.setFont(new java.awt.Font("TeXGyreAdventor", 0, 14)); // NOI18N
+        jLabel11.setText("ID");
+        jPanel5.add(jLabel11);
+        jLabel11.setBounds(20, 110, 110, 15);
+
+        jLabel2.setFont(new java.awt.Font("TeXGyreAdventor", 0, 14)); // NOI18N
+        jLabel2.setText("Nama lengkap");
+        jPanel5.add(jLabel2);
+        jLabel2.setBounds(20, 150, 110, 15);
+
+        jLabel13.setFont(new java.awt.Font("TeXGyreAdventor", 0, 14)); // NOI18N
+        jLabel13.setText("Jenis Kelamin");
+        jPanel5.add(jLabel13);
+        jLabel13.setBounds(20, 180, 110, 15);
+
+        jLabel3.setFont(new java.awt.Font("TeXGyreAdventor", 0, 14)); // NOI18N
+        jLabel3.setText("Tempat lahir");
+        jPanel5.add(jLabel3);
+        jLabel3.setBounds(20, 220, 100, 20);
+
+        jLabel14.setFont(new java.awt.Font("TeXGyreAdventor", 0, 14)); // NOI18N
+        jLabel14.setText("Tanggal lahir");
+        jPanel5.add(jLabel14);
+        jLabel14.setBounds(20, 260, 180, 20);
+
+        jLabel5.setFont(new java.awt.Font("TeXGyreAdventor", 0, 14)); // NOI18N
+        jLabel5.setText("Alamat");
+        jPanel5.add(jLabel5);
+        jLabel5.setBounds(20, 310, 70, 15);
+
+        jLabel6.setFont(new java.awt.Font("TeXGyreAdventor", 0, 14)); // NOI18N
+        jLabel6.setText("Kota");
+        jPanel5.add(jLabel6);
+        jLabel6.setBounds(20, 340, 140, 20);
+
+        jLabel16.setFont(new java.awt.Font("TeXGyreAdventor", 0, 14)); // NOI18N
+        jLabel16.setText("Nomor Telepon");
+        jPanel5.add(jLabel16);
+        jLabel16.setBounds(20, 380, 140, 20);
+
+        jLabel15.setFont(new java.awt.Font("TeXGyreAdventor", 0, 14)); // NOI18N
+        jLabel15.setText("Email");
+        jPanel5.add(jLabel15);
+        jLabel15.setBounds(20, 420, 140, 20);
+
+        jLabel9.setFont(new java.awt.Font("TeXGyreAdventor", 0, 14)); // NOI18N
+        jLabel9.setText("ID Psikotes");
+        jPanel5.add(jLabel9);
+        jLabel9.setBounds(400, 110, 100, 20);
+
+        jLabel4.setFont(new java.awt.Font("TeXGyreAdventor", 0, 14)); // NOI18N
+        jLabel4.setText("Ketersediaan");
+        jPanel5.add(jLabel4);
+        jLabel4.setBounds(400, 140, 130, 20);
+
+        jLabel17.setFont(new java.awt.Font("TeXGyreAdventor", 0, 14)); // NOI18N
+        jLabel17.setText("Gaji Harapan");
+        jPanel5.add(jLabel17);
+        jLabel17.setBounds(400, 180, 130, 20);
+
+        jLabel18.setFont(new java.awt.Font("TeXGyreAdventor", 0, 14)); // NOI18N
+        jLabel18.setText("Pendidikan");
+        jPanel5.add(jLabel18);
+        jLabel18.setBounds(400, 220, 130, 20);
+
+        jLabel12.setFont(new java.awt.Font("TeXGyreAdventor", 0, 14)); // NOI18N
+        jLabel12.setText("Status Berkeluarga");
+        jPanel5.add(jLabel12);
+        jLabel12.setBounds(400, 260, 160, 20);
+
+        jLabel19.setFont(new java.awt.Font("TeXGyreAdventor", 0, 14)); // NOI18N
+        jLabel19.setText("Keahlian Pelamar");
+        jPanel5.add(jLabel19);
+        jLabel19.setBounds(400, 300, 160, 20);
+
+        btninsert.setText("Tambahkan");
+        btninsert.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btninsertActionPerformed(evt);
+            }
+        });
+        jPanel5.add(btninsert);
+        btninsert.setBounds(400, 390, 110, 20);
+
+        jLabel21.setFont(new java.awt.Font("TeXGyreAdventor", 0, 14)); // NOI18N
+        jLabel21.setText("Dream Job Pelamar");
+        jPanel5.add(jLabel21);
+        jLabel21.setBounds(400, 340, 160, 20);
+
+        btnemail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnemailActionPerformed(evt);
+            }
+        });
+        jPanel5.add(btnemail);
+        btnemail.setBounds(140, 420, 170, 30);
+
+        btnnama.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnnamaActionPerformed(evt);
+            }
+        });
+        jPanel5.add(btnnama);
+        btnnama.setBounds(140, 140, 170, 30);
+
+        btnklmn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnklmnActionPerformed(evt);
+            }
+        });
+        jPanel5.add(btnklmn);
+        btnklmn.setBounds(140, 180, 170, 30);
+
+        btntgl.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btntglActionPerformed(evt);
+            }
+        });
+        jPanel5.add(btntgl);
+        btntgl.setBounds(140, 260, 170, 30);
+
+        btnalamat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnalamatActionPerformed(evt);
+            }
+        });
+        jPanel5.add(btnalamat);
+        btnalamat.setBounds(140, 300, 170, 30);
+
+        btnkota.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnkotaActionPerformed(evt);
+            }
+        });
+        jPanel5.add(btnkota);
+        btnkota.setBounds(140, 340, 170, 30);
+
+        btnno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnnoActionPerformed(evt);
+            }
+        });
+        jPanel5.add(btnno);
+        btnno.setBounds(140, 380, 170, 30);
+
+        btnid.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnidActionPerformed(evt);
+            }
+        });
+        jPanel5.add(btnid);
+        btnid.setBounds(140, 100, 170, 30);
+
+        btnidpsiko.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnidpsikoActionPerformed(evt);
+            }
+        });
+        jPanel5.add(btnidpsiko);
+        btnidpsiko.setBounds(570, 100, 170, 30);
+
+        btnsedia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnsediaActionPerformed(evt);
+            }
+        });
+        jPanel5.add(btnsedia);
+        btnsedia.setBounds(570, 140, 170, 30);
+
+        btngaji.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btngajiActionPerformed(evt);
+            }
+        });
+        jPanel5.add(btngaji);
+        btngaji.setBounds(570, 180, 170, 30);
+
+        btnpendi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnpendiActionPerformed(evt);
+            }
+        });
+        jPanel5.add(btnpendi);
+        btnpendi.setBounds(570, 220, 170, 30);
+
+        btnkeluarga.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnkeluargaActionPerformed(evt);
+            }
+        });
+        jPanel5.add(btnkeluarga);
+        btnkeluarga.setBounds(570, 260, 170, 30);
+
+        btndream.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btndreamActionPerformed(evt);
+            }
+        });
+        jPanel5.add(btndream);
+        btndream.setBounds(570, 340, 170, 30);
+
+        btnkeahlian.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnkeahlianActionPerformed(evt);
+            }
+        });
+        jPanel5.add(btnkeahlian);
+        btnkeahlian.setBounds(570, 300, 170, 30);
+
+        combokate.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pendidikan", "Teknologi", "Item 3", "Item 4" }));
+        combokate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                combokateActionPerformed(evt);
+            }
+        });
+        jPanel5.add(combokate);
+        combokate.setBounds(770, 300, 120, 25);
+
+        btntpt1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btntpt1ActionPerformed(evt);
+            }
+        });
+        jPanel5.add(btntpt1);
+        btntpt1.setBounds(140, 220, 170, 30);
+
+        jTabbedPane2.addTab("Insert data                                            ", jPanel5);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 910, Short.MAX_VALUE)
+            .addComponent(jTabbedPane2)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 502, Short.MAX_VALUE)
+            .addComponent(jTabbedPane2)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btninsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btninsertActionPerformed
+       try{
+            con=Connect.ConnectDB();
+            if (btnid.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "Please enter patient id","Error", JOptionPane.ERROR_MESSAGE);
+                return;
+
+            }
+            if (btnnama.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "Please enter patient name","Error", JOptionPane.ERROR_MESSAGE);
+                return;
+
+            }
+            if (btnklmn.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "Please enter Father's name","Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            if (btntgl.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "Please enter address","Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+           if (btntgl.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "Please enter contact no.","Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+         
+            if (btnalamat.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "Please enter age","Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+             if (btnkota.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "Please select gender","Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            if (btnno.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "Please select blood group","Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            if (btnemail.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "Please select blood group","Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            if (btnidpsiko.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "Please select blood group","Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            if (btnsedia.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "Please select blood group","Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            if (btngaji.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "Please select blood group","Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            if (btnpendi.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "Please select blood group","Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+             if (btnkeluarga.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "Please select blood group","Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+              if (btnkeahlian.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "Please select blood group","Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+               if (btndream.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "Please select blood group","Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+               if (combokate.getSelectedItem().equals("")) {
+                JOptionPane.showMessageDialog( this, "Please select gender","Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+           
+          
+       Statement stmt;
+       stmt= con.createStatement();
+       String sql1="Select idPelamar from tbdatapelamar where idPelamar= '" + btnid.getText() + "'";
+      rs=stmt.executeQuery(sql1);
+      if(rs.next()){
+        JOptionPane.showMessageDialog( this, "ID already exists","Error", JOptionPane.ERROR_MESSAGE);
+        btnid.setText("");
+        btnid.requestDefaultFocus();
+       return;
+      }
+            String sql= "insert into tbdatapelamar(idPelamar,nama,jenisKelamin,TempatLahir,TanggalLahir,alamat,Kota,noTelp,email,idPsikotest,"
+                    + "ketersediaan,gajiHarapan,pendidikan,statusberkeluarga,keahlian,Dream_Job)values('"+ 
+                    btnid.getText() + "','"+ btnnama.getText() + "','"+ btnklmn.getText() + "','"+ btntgl.getText() + "','"
+                    + btntgl.getText() + "','" + btnalamat.getText() + "','"+ btnkota.getText() + "','" + btnno.getText() + "','"
+                    + btnemail.getText() + "','"+ btnidpsiko.getText() + "','"+ btnsedia.getText() + "','"+ btngaji.getText() + "','"
+                    + btnpendi.getText() + "','"+ btnkeluarga.getText() + "','"+ btnkeahlian.getText() + "','"+ btndream.getText() + "')";
+
+            pst=con.prepareStatement(sql);
+            pst.execute();
+            JOptionPane.showMessageDialog(this,"Successfully Registered","Patient",JOptionPane.INFORMATION_MESSAGE);
+            btninsert.setEnabled(false);
+
+        }catch(HeadlessException | SQLException ex){
+            JOptionPane.showMessageDialog(this,ex);
+        }
+    }//GEN-LAST:event_btninsertActionPerformed
+
+    private void btnemailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnemailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnemailActionPerformed
+
+    private void btnnamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnamaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnnamaActionPerformed
+
+    private void btnklmnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnklmnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnklmnActionPerformed
+
+    private void btntglActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btntglActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btntglActionPerformed
+
+    private void btnkotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnkotaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnkotaActionPerformed
+
+    private void btnnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnnoActionPerformed
+
+    private void btnidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnidActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnidActionPerformed
+
+    private void btnidpsikoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnidpsikoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnidpsikoActionPerformed
+
+    private void btnsediaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsediaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnsediaActionPerformed
+
+    private void btngajiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btngajiActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btngajiActionPerformed
+
+    private void btnpendiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpendiActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnpendiActionPerformed
+
+    private void btnkeluargaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnkeluargaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnkeluargaActionPerformed
+
+    private void btndreamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndreamActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btndreamActionPerformed
+
+    private void btnkeahlianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnkeahlianActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnkeahlianActionPerformed
+
+    private void combokateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combokateActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_combokateActionPerformed
+
+    private void btnalamatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnalamatActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnalamatActionPerformed
+
+    private void btntpt1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btntpt1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btntpt1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -78,5 +563,44 @@ public class MainMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField btnalamat;
+    private javax.swing.JTextField btndream;
+    private javax.swing.JTextField btnemail;
+    private javax.swing.JTextField btngaji;
+    private javax.swing.JTextField btnid;
+    private javax.swing.JTextField btnidpsiko;
+    private javax.swing.JButton btninsert;
+    private javax.swing.JTextField btnkeahlian;
+    private javax.swing.JTextField btnkeluarga;
+    private javax.swing.JTextField btnklmn;
+    private javax.swing.JTextField btnkota;
+    private javax.swing.JTextField btnnama;
+    private javax.swing.JTextField btnno;
+    private javax.swing.JTextField btnpendi;
+    private javax.swing.JTextField btnsedia;
+    private javax.swing.JTextField btntgl;
+    private javax.swing.JTextField btntpt1;
+    private javax.swing.JComboBox<String> combokate;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JTabbedPane jTabbedPane2;
     // End of variables declaration//GEN-END:variables
 }
