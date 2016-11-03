@@ -13,6 +13,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import java.sql.*;
+import javax.swing.*;
+import net.proteanit.sql.DbUtils;
 
 /**
  *
@@ -23,14 +26,65 @@ Connection con=null;
 ResultSet rs=null;
 PreparedStatement pst=null;
 
+
     /**
      * Creates new form MainMenu
      */
     public MainMenu() {
         initComponents();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
-    }
+        con= Connect.ConnectDB();
+        Get_Data();
+        Get_Data2();
+        setLocationRelativeTo(null);
 
+    }
+        private void Reset()
+{
+    txtid.setText("");
+    txtnama.setText("");
+    txtkelamin.setText("");
+    txttempat.setText("");
+    txttanggal.setText("");
+    txtalamat.setText("");
+    txtkota.setText("");
+    txttelepon.setText("");
+    txtemail.setText("");
+    txtpsiko.setText("");
+    combosedia1.setSelectedIndex(-1);
+    txtgaji.setText("");
+    txtpendidikan.setText("");
+    txtstatus.setText("");
+    txtkeahlian.setText("");
+    txtdream.setText("");
+    combokate1.setSelectedIndex(-1);
+    Get_Data2();
+}
+        private void Get_Data(){
+        String sql="select * from tbdatapelamar";
+          try{
+         pst=con.prepareStatement(sql);
+          rs= pst.executeQuery();
+         tabelview.setModel(DbUtils.resultSetToTableModel(rs));
+         tabelview.setDefaultEditor(Object.class, null);
+         tabelview.setAutoCreateRowSorter(true);
+         }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+          
+}
+        }
+           private void Get_Data2(){
+        String sql="select * from tbdatapelamar";
+          try{
+         pst=con.prepareStatement(sql);
+          rs= pst.executeQuery();
+         tabelview2.setModel(DbUtils.resultSetToTableModel(rs));
+         tabelview2.setDefaultEditor(Object.class, null);
+         }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+          
+}
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -41,8 +95,45 @@ PreparedStatement pst=null;
     private void initComponents() {
 
         jTabbedPane2 = new javax.swing.JTabbedPane();
-        jPanel4 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tabelview2 = new javax.swing.JTable();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        jLabel27 = new javax.swing.JLabel();
+        jLabel28 = new javax.swing.JLabel();
+        jLabel29 = new javax.swing.JLabel();
+        jLabel30 = new javax.swing.JLabel();
+        jLabel31 = new javax.swing.JLabel();
+        jLabel32 = new javax.swing.JLabel();
+        jLabel33 = new javax.swing.JLabel();
+        txtid = new javax.swing.JTextField();
+        txtkelamin = new javax.swing.JTextField();
+        txttempat = new javax.swing.JTextField();
+        txtnama = new javax.swing.JTextField();
+        txtemail = new javax.swing.JTextField();
+        txttanggal = new javax.swing.JTextField();
+        txtalamat = new javax.swing.JTextField();
+        txtkota = new javax.swing.JTextField();
+        txttelepon = new javax.swing.JTextField();
+        txtpsiko = new javax.swing.JTextField();
+        txtgaji = new javax.swing.JTextField();
+        txtpendidikan = new javax.swing.JTextField();
+        txtstatus = new javax.swing.JTextField();
+        txtkeahlian = new javax.swing.JTextField();
+        txtdream = new javax.swing.JTextField();
+        combokate1 = new javax.swing.JComboBox<>();
+        btnnew = new javax.swing.JButton();
+        btnupdate = new javax.swing.JButton();
+        btndelete = new javax.swing.JButton();
+        combosedia1 = new javax.swing.JComboBox<>();
         jPanel5 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -79,32 +170,203 @@ PreparedStatement pst=null;
         btnkeahlian = new javax.swing.JTextField();
         combokate = new javax.swing.JComboBox<>();
         btntpt1 = new javax.swing.JTextField();
+        jPanel4 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabelview = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
+        jPanel6.setLayout(null);
 
-        jTabbedPane2.addTab("View Data                                      ", jPanel4);
+        tabelview2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        tabelview2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelview2MouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(tabelview2);
 
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1025, Short.MAX_VALUE)
-        );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 569, Short.MAX_VALUE)
-        );
+        jPanel6.add(jScrollPane3);
+        jScrollPane3.setBounds(0, 0, 1380, 250);
+
+        jLabel20.setFont(new java.awt.Font("TeXGyreAdventor", 0, 14)); // NOI18N
+        jLabel20.setText("ID");
+        jPanel6.add(jLabel20);
+        jLabel20.setBounds(130, 270, 110, 15);
+
+        jLabel7.setFont(new java.awt.Font("TeXGyreAdventor", 0, 14)); // NOI18N
+        jLabel7.setText("Nama lengkap");
+        jPanel6.add(jLabel7);
+        jLabel7.setBounds(130, 300, 110, 15);
+
+        jLabel22.setFont(new java.awt.Font("TeXGyreAdventor", 0, 14)); // NOI18N
+        jLabel22.setText("Jenis Kelamin");
+        jPanel6.add(jLabel22);
+        jLabel22.setBounds(130, 330, 110, 15);
+
+        jLabel8.setFont(new java.awt.Font("TeXGyreAdventor", 0, 14)); // NOI18N
+        jLabel8.setText("Tempat lahir");
+        jPanel6.add(jLabel8);
+        jLabel8.setBounds(130, 360, 100, 20);
+
+        jLabel23.setFont(new java.awt.Font("TeXGyreAdventor", 0, 14)); // NOI18N
+        jLabel23.setText("Tanggal lahir");
+        jPanel6.add(jLabel23);
+        jLabel23.setBounds(130, 390, 180, 20);
+
+        jLabel10.setFont(new java.awt.Font("TeXGyreAdventor", 0, 14)); // NOI18N
+        jLabel10.setText("Alamat");
+        jPanel6.add(jLabel10);
+        jLabel10.setBounds(130, 420, 70, 15);
+
+        jLabel24.setFont(new java.awt.Font("TeXGyreAdventor", 0, 14)); // NOI18N
+        jLabel24.setText("Kota");
+        jPanel6.add(jLabel24);
+        jLabel24.setBounds(130, 450, 140, 20);
+
+        jLabel25.setFont(new java.awt.Font("TeXGyreAdventor", 0, 14)); // NOI18N
+        jLabel25.setText("Nomor Telepon");
+        jPanel6.add(jLabel25);
+        jLabel25.setBounds(130, 480, 140, 20);
+
+        jLabel26.setFont(new java.awt.Font("TeXGyreAdventor", 0, 14)); // NOI18N
+        jLabel26.setText("Email");
+        jPanel6.add(jLabel26);
+        jLabel26.setBounds(130, 510, 140, 20);
+
+        jLabel27.setFont(new java.awt.Font("TeXGyreAdventor", 0, 14)); // NOI18N
+        jLabel27.setText("ID Psikotes");
+        jPanel6.add(jLabel27);
+        jLabel27.setBounds(510, 270, 100, 20);
+
+        jLabel28.setFont(new java.awt.Font("TeXGyreAdventor", 0, 14)); // NOI18N
+        jLabel28.setText("Ketersediaan");
+        jPanel6.add(jLabel28);
+        jLabel28.setBounds(510, 300, 130, 20);
+
+        jLabel29.setFont(new java.awt.Font("TeXGyreAdventor", 0, 14)); // NOI18N
+        jLabel29.setText("Gaji Harapan");
+        jPanel6.add(jLabel29);
+        jLabel29.setBounds(510, 330, 130, 20);
+
+        jLabel30.setFont(new java.awt.Font("TeXGyreAdventor", 0, 14)); // NOI18N
+        jLabel30.setText("Pendidikan");
+        jPanel6.add(jLabel30);
+        jLabel30.setBounds(510, 360, 130, 20);
+
+        jLabel31.setFont(new java.awt.Font("TeXGyreAdventor", 0, 14)); // NOI18N
+        jLabel31.setText("Status Berkeluarga");
+        jPanel6.add(jLabel31);
+        jLabel31.setBounds(510, 390, 160, 20);
+
+        jLabel32.setFont(new java.awt.Font("TeXGyreAdventor", 0, 14)); // NOI18N
+        jLabel32.setText("Keahlian Pelamar");
+        jPanel6.add(jLabel32);
+        jLabel32.setBounds(510, 420, 160, 20);
+
+        jLabel33.setFont(new java.awt.Font("TeXGyreAdventor", 0, 14)); // NOI18N
+        jLabel33.setText("Dream Job Pelamar");
+        jPanel6.add(jLabel33);
+        jLabel33.setBounds(510, 450, 160, 20);
+
+        txtid.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtidActionPerformed(evt);
+            }
+        });
+        jPanel6.add(txtid);
+        txtid.setBounds(260, 270, 149, 30);
+        jPanel6.add(txtkelamin);
+        txtkelamin.setBounds(260, 330, 149, 30);
+
+        txttempat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txttempatActionPerformed(evt);
+            }
+        });
+        jPanel6.add(txttempat);
+        txttempat.setBounds(260, 360, 149, 30);
+        jPanel6.add(txtnama);
+        txtnama.setBounds(260, 300, 149, 30);
+        jPanel6.add(txtemail);
+        txtemail.setBounds(260, 510, 149, 30);
+        jPanel6.add(txttanggal);
+        txttanggal.setBounds(260, 390, 149, 30);
+        jPanel6.add(txtalamat);
+        txtalamat.setBounds(260, 420, 149, 30);
+        jPanel6.add(txtkota);
+        txtkota.setBounds(260, 450, 149, 30);
+        jPanel6.add(txttelepon);
+        txttelepon.setBounds(260, 480, 149, 30);
+        jPanel6.add(txtpsiko);
+        txtpsiko.setBounds(670, 270, 149, 30);
+        jPanel6.add(txtgaji);
+        txtgaji.setBounds(670, 330, 149, 30);
+
+        txtpendidikan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtpendidikanActionPerformed(evt);
+            }
+        });
+        jPanel6.add(txtpendidikan);
+        txtpendidikan.setBounds(670, 360, 149, 30);
+        jPanel6.add(txtstatus);
+        txtstatus.setBounds(670, 390, 149, 30);
+        jPanel6.add(txtkeahlian);
+        txtkeahlian.setBounds(670, 420, 149, 30);
+        jPanel6.add(txtdream);
+        txtdream.setBounds(670, 450, 149, 30);
+
+        combokate1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pendidikan", "Teknologi", "Item 3", "Item 4" }));
+        combokate1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                combokate1ActionPerformed(evt);
+            }
+        });
+        jPanel6.add(combokate1);
+        combokate1.setBounds(670, 490, 150, 25);
+
+        btnnew.setText("new");
+        btnnew.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnnewActionPerformed(evt);
+            }
+        });
+        jPanel6.add(btnnew);
+        btnnew.setBounds(420, 540, 81, 26);
+
+        btnupdate.setText("update");
+        btnupdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnupdateActionPerformed(evt);
+            }
+        });
+        jPanel6.add(btnupdate);
+        btnupdate.setBounds(520, 540, 81, 26);
+
+        btndelete.setText("delete");
+        jPanel6.add(btndelete);
+        btndelete.setBounds(620, 540, 81, 26);
+
+        combosedia1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "vacant", "not_vacant" }));
+        combosedia1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                combosedia1ActionPerformed(evt);
+            }
+        });
+        jPanel6.add(combosedia1);
+        combosedia1.setBounds(670, 300, 150, 25);
 
         jTabbedPane2.addTab("Edit data                                                     ", jPanel6);
 
@@ -342,11 +604,57 @@ PreparedStatement pst=null;
 
         jTabbedPane2.addTab("Insert data                                            ", jPanel5);
 
+        tabelview.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tabelview);
+
+        jButton1.setText("show");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1364, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(447, 447, 447))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33)
+                .addComponent(jButton1)
+                .addGap(0, 137, Short.MAX_VALUE))
+        );
+
+        jTabbedPane2.addTab("View Data                                      ", jPanel4);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane2)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1381, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -356,8 +664,80 @@ PreparedStatement pst=null;
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btntpt1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btntpt1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btntpt1ActionPerformed
+
+    private void combokateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combokateActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_combokateActionPerformed
+
+    private void btnkeahlianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnkeahlianActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnkeahlianActionPerformed
+
+    private void btndreamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndreamActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btndreamActionPerformed
+
+    private void btnkeluargaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnkeluargaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnkeluargaActionPerformed
+
+    private void btnpendiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpendiActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnpendiActionPerformed
+
+    private void btngajiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btngajiActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btngajiActionPerformed
+
+    private void btnsediaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsediaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnsediaActionPerformed
+
+    private void btnidpsikoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnidpsikoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnidpsikoActionPerformed
+
+    private void btnidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnidActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnidActionPerformed
+
+    private void btnnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnnoActionPerformed
+
+    private void btnkotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnkotaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnkotaActionPerformed
+
+    private void btnalamatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnalamatActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnalamatActionPerformed
+
+    private void btntglActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btntglActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btntglActionPerformed
+
+    private void btnklmnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnklmnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnklmnActionPerformed
+
+    private void btnnamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnamaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnnamaActionPerformed
+
+    private void btnemailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnemailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnemailActionPerformed
+
     private void btninsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btninsertActionPerformed
-       try{
+        try{
             con=Connect.ConnectDB();
             if (btnid.getText().equals("")) {
                 JOptionPane.showMessageDialog( this, "Please enter patient id","Error", JOptionPane.ERROR_MESSAGE);
@@ -377,16 +757,16 @@ PreparedStatement pst=null;
                 JOptionPane.showMessageDialog( this, "Please enter address","Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-           if (btntgl.getText().equals("")) {
+            if (btntgl.getText().equals("")) {
                 JOptionPane.showMessageDialog( this, "Please enter contact no.","Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-         
+
             if (btnalamat.getText().equals("")) {
                 JOptionPane.showMessageDialog( this, "Please enter age","Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-             if (btnkota.getText().equals("")) {
+            if (btnkota.getText().equals("")) {
                 JOptionPane.showMessageDialog( this, "Please select gender","Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
@@ -414,40 +794,39 @@ PreparedStatement pst=null;
                 JOptionPane.showMessageDialog( this, "Please select blood group","Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-             if (btnkeluarga.getText().equals("")) {
+            if (btnkeluarga.getText().equals("")) {
                 JOptionPane.showMessageDialog( this, "Please select blood group","Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-              if (btnkeahlian.getText().equals("")) {
+            if (btnkeahlian.getText().equals("")) {
                 JOptionPane.showMessageDialog( this, "Please select blood group","Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-               if (btndream.getText().equals("")) {
+            if (btndream.getText().equals("")) {
                 JOptionPane.showMessageDialog( this, "Please select blood group","Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-               if (combokate.getSelectedItem().equals("")) {
+            if (combokate.getSelectedItem().equals("")) {
                 JOptionPane.showMessageDialog( this, "Please select gender","Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-           
-          
-       Statement stmt;
-       stmt= con.createStatement();
-       String sql1="Select idPelamar from tbdatapelamar where idPelamar= '" + btnid.getText() + "'";
-      rs=stmt.executeQuery(sql1);
-      if(rs.next()){
-        JOptionPane.showMessageDialog( this, "ID already exists","Error", JOptionPane.ERROR_MESSAGE);
-        btnid.setText("");
-        btnid.requestDefaultFocus();
-       return;
-      }
+
+            Statement stmt;
+            stmt= con.createStatement();
+            String sql1="Select idPelamar from tbdatapelamar where idPelamar= '" + btnid.getText() + "'";
+            rs=stmt.executeQuery(sql1);
+            if(rs.next()){
+                JOptionPane.showMessageDialog( this, "ID already exists","Error", JOptionPane.ERROR_MESSAGE);
+                btnid.setText("");
+                btnid.requestDefaultFocus();
+                return;
+            }
             String sql= "insert into tbdatapelamar(idPelamar,nama,jenisKelamin,TempatLahir,TanggalLahir,alamat,Kota,noTelp,email,idPsikotest,"
-                    + "ketersediaan,gajiHarapan,pendidikan,statusberkeluarga,keahlian,Dream_Job)values('"+ 
-                    btnid.getText() + "','"+ btnnama.getText() + "','"+ btnklmn.getText() + "','"+ btntgl.getText() + "','"
-                    + btntgl.getText() + "','" + btnalamat.getText() + "','"+ btnkota.getText() + "','" + btnno.getText() + "','"
-                    + btnemail.getText() + "','"+ btnidpsiko.getText() + "','"+ btnsedia.getText() + "','"+ btngaji.getText() + "','"
-                    + btnpendi.getText() + "','"+ btnkeluarga.getText() + "','"+ btnkeahlian.getText() + "','"+ btndream.getText() + "')";
+            + "ketersediaan,gajiHarapan,pendidikan,statusberkeluarga,keahlian,Dream_Job,kategori)values('"+
+            btnid.getText() + "','"+ btnnama.getText() + "','"+ btnklmn.getText() + "','"+ btntgl.getText() + "','"
+            + btntgl.getText() + "','" + btnalamat.getText() + "','"+ btnkota.getText() + "','" + btnno.getText() + "','"
+            + btnemail.getText() + "','"+ btnidpsiko.getText() + "','"+ btnsedia.getText() + "','"+ btngaji.getText() + "','"
+            + btnpendi.getText() + "','"+ btnkeluarga.getText() + "','"+ btnkeahlian.getText() + "','"+ btndream.getText() + "','"+ combokate.getSelectedItem() + "')";
 
             pst=con.prepareStatement(sql);
             pst.execute();
@@ -459,73 +838,101 @@ PreparedStatement pst=null;
         }
     }//GEN-LAST:event_btninsertActionPerformed
 
-    private void btnemailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnemailActionPerformed
+    private void txttempatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txttempatActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnemailActionPerformed
+    }//GEN-LAST:event_txttempatActionPerformed
 
-    private void btnnamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnamaActionPerformed
+    private void txtpendidikanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtpendidikanActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnnamaActionPerformed
+    }//GEN-LAST:event_txtpendidikanActionPerformed
 
-    private void btnklmnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnklmnActionPerformed
+    private void txtidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtidActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnklmnActionPerformed
+    }//GEN-LAST:event_txtidActionPerformed
 
-    private void btntglActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btntglActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btntglActionPerformed
+    private void tabelview2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelview2MouseClicked
+        try{
+            con=Connect.ConnectDB();
+            int row= tabelview2.getSelectedRow();
+            String table_click= tabelview2.getModel().getValueAt(row, 0).toString();
+            String sql= "select * from tbdatapelamar where idpelamar = '" + table_click + "'";
+            pst=con.prepareStatement(sql);
+            rs=  pst.executeQuery();
+            if(rs.next()){
 
-    private void btnkotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnkotaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnkotaActionPerformed
+                String add1=rs.getString("idpelamar");
+                txtid.setText(add1);
+                String add2=rs.getString("nama");
+                txtnama.setText(add2);
+                String add3 = rs.getString("jenisKelamin");
+                txtkelamin.setText(add3);
+                String add4= rs.getString("TempatLahir");
+                txttempat.setText(add4);
+                String add5 = rs.getString("TanggalLahir");
+                txttanggal.setText(add5);
+                String add6= rs.getString("alamat");
+                txtalamat.setText(add6);
+                 String add7=rs.getString("kota");
+                txtkota.setText(add7);
+                String add8=rs.getString("noTelp");
+                txttelepon.setText(add8);
+                String add9 = rs.getString("email");
+                txtemail.setText(add9);
+                String add10= rs.getString("idPsikotest");
+                txtpsiko.setText(add10);
+                String add11 = rs.getString("ketersediaan");
+                combosedia1.setSelectedItem(add11);
+                String add12 = rs.getString("gajiHarapan");
+                txtgaji.setText(add12);
+                String add13=rs.getString("pendidikan");
+                txtpendidikan.setText(add13);
+                String add14 = rs.getString("statusberkeluarga");
+                txtstatus.setText(add14);
+                String add15= rs.getString("Keahlian");
+                txtkeahlian.setText(add15);
+                String add16 = rs.getString("Dream_Job");
+                txtdream.setText(add16);
+                String add17 = rs.getString("kategori");
+                combokate1.setSelectedItem(add17);
+                btnupdate.setEnabled(true);
 
-    private void btnnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnnoActionPerformed
+            }
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(this,ex);
+        }
+    }//GEN-LAST:event_tabelview2MouseClicked
 
-    private void btnidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnidActionPerformed
+    private void combokate1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combokate1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnidActionPerformed
+    }//GEN-LAST:event_combokate1ActionPerformed
 
-    private void btnidpsikoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnidpsikoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnidpsikoActionPerformed
+    private void btnnewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnewActionPerformed
+        Reset();
+    }//GEN-LAST:event_btnnewActionPerformed
 
-    private void btnsediaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsediaActionPerformed
+    private void combosedia1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combosedia1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnsediaActionPerformed
+    }//GEN-LAST:event_combosedia1ActionPerformed
 
-    private void btngajiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btngajiActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btngajiActionPerformed
-
-    private void btnpendiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpendiActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnpendiActionPerformed
-
-    private void btnkeluargaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnkeluargaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnkeluargaActionPerformed
-
-    private void btndreamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndreamActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btndreamActionPerformed
-
-    private void btnkeahlianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnkeahlianActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnkeahlianActionPerformed
-
-    private void combokateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combokateActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_combokateActionPerformed
-
-    private void btnalamatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnalamatActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnalamatActionPerformed
-
-    private void btntpt1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btntpt1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btntpt1ActionPerformed
+    private void btnupdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnupdateActionPerformed
+        try{
+            con=Connect.ConnectDB();
+            String sql= "update tbdatapelamar set nama='" + txtnama.getText() + "',jenisKelamin='" + txtkelamin.getText() 
+                    + "',TempatLahir='" + txttempat.getText() + "',TanggalLahir='" + txttanggal.getText() + "',alamat='" + txtalamat.getText() 
+                    + "',Kota='" + txtkota.getText() + "',noTelp='" + txttelepon.getText() + "',email='" + txtemail.getText() + "',idPsikotest='" + txtpsiko.getText() 
+                    + "',ketersediaan='" + combosedia1.getSelectedItem() + "',gajiHarapan='" + txtgaji.getText() 
+                    + "',pendidikan='" + txtpendidikan.getText() + "',statusberkeluarga='" + txtstatus.getText() + "',keahlian='" + txtkeahlian.getText() + "',Dream_Job='" + txtdream.getText() 
+                    + "',kategori='" + combokate1.getSelectedItem() + "' where idPelamar='" + txtid.getText() + "'";
+            pst=con.prepareStatement(sql);
+            pst.execute();
+            JOptionPane.showMessageDialog(this,"Successfully updated","Room Record",JOptionPane.INFORMATION_MESSAGE);
+            btnupdate.setEnabled(false);
+            Get_Data2();
+            Reset();
+        }catch(HeadlessException | SQLException ex){
+            JOptionPane.showMessageDialog(this,ex);
+        }
+    }//GEN-LAST:event_btnupdateActionPerformed
 
     /**
      * @param args the command line arguments
@@ -564,6 +971,7 @@ PreparedStatement pst=null;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField btnalamat;
+    private javax.swing.JButton btndelete;
     private javax.swing.JTextField btndream;
     private javax.swing.JTextField btnemail;
     private javax.swing.JTextField btngaji;
@@ -575,13 +983,19 @@ PreparedStatement pst=null;
     private javax.swing.JTextField btnklmn;
     private javax.swing.JTextField btnkota;
     private javax.swing.JTextField btnnama;
+    private javax.swing.JButton btnnew;
     private javax.swing.JTextField btnno;
     private javax.swing.JTextField btnpendi;
     private javax.swing.JTextField btnsedia;
     private javax.swing.JTextField btntgl;
     private javax.swing.JTextField btntpt1;
+    private javax.swing.JButton btnupdate;
     private javax.swing.JComboBox<String> combokate;
+    private javax.swing.JComboBox<String> combokate1;
+    private javax.swing.JComboBox<String> combosedia1;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -592,15 +1006,49 @@ PreparedStatement pst=null;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane2;
+    private javax.swing.JTable tabelview;
+    private javax.swing.JTable tabelview2;
+    private javax.swing.JTextField txtalamat;
+    private javax.swing.JTextField txtdream;
+    private javax.swing.JTextField txtemail;
+    private javax.swing.JTextField txtgaji;
+    private javax.swing.JTextField txtid;
+    private javax.swing.JTextField txtkeahlian;
+    private javax.swing.JTextField txtkelamin;
+    private javax.swing.JTextField txtkota;
+    private javax.swing.JTextField txtnama;
+    private javax.swing.JTextField txtpendidikan;
+    private javax.swing.JTextField txtpsiko;
+    private javax.swing.JTextField txtstatus;
+    private javax.swing.JTextField txttanggal;
+    private javax.swing.JTextField txttelepon;
+    private javax.swing.JTextField txttempat;
     // End of variables declaration//GEN-END:variables
 }

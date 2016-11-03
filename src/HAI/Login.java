@@ -48,6 +48,7 @@ PreparedStatement pst=null;
         jLabel7 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -56,9 +57,7 @@ PreparedStatement pst=null;
         setAlwaysOnTop(true);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setLocation(new java.awt.Point(0, 0));
-        setMaximumSize(new java.awt.Dimension(1280, 766));
-        setMinimumSize(new java.awt.Dimension(1280, 766));
-        setPreferredSize(new java.awt.Dimension(1280, 766));
+        setPreferredSize(new java.awt.Dimension(1280, 776));
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
@@ -108,6 +107,7 @@ PreparedStatement pst=null;
         txtPassword.setBounds(540, 330, 166, 17);
 
         btnOK.setBackground(new java.awt.Color(0, 0, 0));
+        btnOK.setIcon(new javax.swing.ImageIcon("C:\\java\\HAI\\src\\image\\dsasdasda.PNG")); // NOI18N
         btnOK.setBorder(null);
         btnOK.setOpaque(false);
         btnOK.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -159,7 +159,11 @@ PreparedStatement pst=null;
         getContentPane().add(jLabel4);
         jLabel4.setBounds(440, 300, 110, 20);
 
-        pack();
+        jLabel8.setIcon(new javax.swing.ImageIcon("C:\\java\\HAI\\src\\image\\hero.jpg")); // NOI18N
+        getContentPane().add(jLabel8);
+        jLabel8.setBounds(0, 0, 1280, 760);
+
+        setSize(new java.awt.Dimension(1296, 806));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
     
@@ -181,7 +185,8 @@ PreparedStatement pst=null;
           
             }
       con=Connect.ConnectDB();
-      String sql= "select * from users where username= '" + txtUserName.getText() + "' and password ='" + txtPassword.getText() + "'";
+      String sql= "select * from users where username= '" + txtUserName.getText() + "'"
+              + " and password ='" + txtPassword.getText() + "'";
       try
       {
           pst=con.prepareStatement(sql);
@@ -299,6 +304,7 @@ PreparedStatement pst=null;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JSplitPane jSplitPane1;
     public javax.swing.JPasswordField txtPassword;
