@@ -91,6 +91,8 @@ public class Work extends JFrame{
                ps.setBlob(4,is);
                ps.executeUpdate();
                JOptionPane.showMessageDialog(null, "Data Inserted");
+               MainMenu frm= new MainMenu();
+               frm.setVisible(true);
            }catch(Exception ex){
                ex.printStackTrace();
            }

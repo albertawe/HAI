@@ -3,10 +3,7 @@
  * and open the template in the editor.
  */
 package HAI;
-/**
- *
- * @author Raj
- */
+
 import java.sql.*;
 import javax.swing.*;
 public class Connect {
