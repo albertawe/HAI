@@ -5,26 +5,37 @@
  */
 package HAI;
 
+import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 import java.awt.HeadlessException;
-import java.io.File;
-import java.io.FileInputStream;
+
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+
 import java.sql.Statement;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import java.sql.*;
-import javax.swing.*;
-import javax.swing.filechooser.FileNameExtensionFilter;
+
 import net.proteanit.sql.DbUtils;
 import java.awt.print.PrinterException;
 import java.text.MessageFormat;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 import javax.swing.JTable.PrintMode;
 import javax.swing.table.*;
+
+import java.io.File;
+import java.io.FileInputStream;
+
+import java.io.InputStream;
+import java.sql.DriverManager;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.JFileChooser;
+import java.io.File;  
 /**
  *
  * @author ACER-PC
@@ -35,6 +46,9 @@ Connection con=null;
 ResultSet rs=null;
 PreparedStatement pst=null;
 Connect konek = new Connect();
+File imageFile = null;
+MysqlDataSource myDb = null;
+        
 
 
 
@@ -46,11 +60,17 @@ Connect konek = new Connect();
         initComponents();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         con= Connect.ConnectDB();
+       
+
         Get_Data();
         Get_Data2();
         setLocationRelativeTo(null);
 
     }
+    
+       
+
+    
         private void Reset()
 {
     txtid.setText("");
@@ -115,44 +135,6 @@ Connect konek = new Connect();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelview = new javax.swing.JTable();
         jLabel35 = new javax.swing.JLabel();
-        jPanel5 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
-        btninsert = new javax.swing.JButton();
-        jLabel21 = new javax.swing.JLabel();
-        btnemail = new javax.swing.JTextField();
-        btnnama = new javax.swing.JTextField();
-        btnklmn = new javax.swing.JTextField();
-        btntgl = new javax.swing.JTextField();
-        btnalamat = new javax.swing.JTextField();
-        btnkota = new javax.swing.JTextField();
-        btnno = new javax.swing.JTextField();
-        btnid = new javax.swing.JTextField();
-        btnidpsiko = new javax.swing.JTextField();
-        btngaji = new javax.swing.JTextField();
-        btnpendi = new javax.swing.JTextField();
-        btnkeluarga = new javax.swing.JTextField();
-        btndream = new javax.swing.JTextField();
-        labelimage = new javax.swing.JLabel();
-        btnkeahlian = new javax.swing.JTextField();
-        combokate = new javax.swing.JComboBox<>();
-        btntpt1 = new javax.swing.JTextField();
-        combosedia = new javax.swing.JComboBox<>();
-        jLabel34 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tabelview2 = new javax.swing.JTable();
@@ -193,8 +175,52 @@ Connect konek = new Connect();
         btndelete = new javax.swing.JButton();
         combosedia1 = new javax.swing.JComboBox<>();
         jButton2 = new javax.swing.JButton();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        btninsert = new javax.swing.JButton();
+        jLabel21 = new javax.swing.JLabel();
+        btnemail = new javax.swing.JTextField();
+        btnnama = new javax.swing.JTextField();
+        btnklmn = new javax.swing.JTextField();
+        btntgl = new javax.swing.JTextField();
+        btnalamat = new javax.swing.JTextField();
+        btnkota = new javax.swing.JTextField();
+        btnno = new javax.swing.JTextField();
+        btnid = new javax.swing.JTextField();
+        btnidpsiko = new javax.swing.JTextField();
+        btngaji = new javax.swing.JTextField();
+        btnpendi = new javax.swing.JTextField();
+        btnkeluarga = new javax.swing.JTextField();
+        btndream = new javax.swing.JTextField();
+        labelimage = new javax.swing.JLabel();
+        btnkeahlian = new javax.swing.JTextField();
+        combokate = new javax.swing.JComboBox<>();
+        btntpt1 = new javax.swing.JTextField();
+        combosedia = new javax.swing.JComboBox<>();
+        jLabel34 = new javax.swing.JLabel();
+        jButton9 = new javax.swing.JButton();
+        jLabel37 = new javax.swing.JLabel();
+        jTextName = new javax.swing.JTextField();
+        jLabel36 = new javax.swing.JLabel();
+        jFileChooser1 = new javax.swing.JFileChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(null);
 
         jPanel4.setBackground(new java.awt.Color(208, 240, 238));
         jPanel4.setLayout(null);
@@ -242,255 +268,13 @@ Connect konek = new Connect();
         jScrollPane1.setViewportView(tabelview);
 
         jPanel4.add(jScrollPane1);
-        jScrollPane1.setBounds(0, 0, 1380, 413);
+        jScrollPane1.setBounds(0, 0, 1380, 220);
 
         jLabel35.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Untitled-1.png"))); // NOI18N
         jPanel4.add(jLabel35);
-        jLabel35.setBounds(0, 200, 1380, 690);
+        jLabel35.setBounds(0, 70, 1380, 610);
 
         jTabbedPane2.addTab("View Data                                      ", jPanel4);
-
-        jPanel5.setLayout(null);
-
-        jLabel1.setText("Daftar Pelamar Baru");
-        jPanel5.add(jLabel1);
-        jLabel1.setBounds(410, 40, 129, 16);
-
-        jLabel11.setFont(new java.awt.Font("TeXGyreAdventor", 0, 14)); // NOI18N
-        jLabel11.setText("ID");
-        jPanel5.add(jLabel11);
-        jLabel11.setBounds(20, 110, 110, 15);
-
-        jLabel2.setFont(new java.awt.Font("TeXGyreAdventor", 0, 14)); // NOI18N
-        jLabel2.setText("Nama lengkap");
-        jPanel5.add(jLabel2);
-        jLabel2.setBounds(20, 150, 110, 15);
-
-        jLabel13.setFont(new java.awt.Font("TeXGyreAdventor", 0, 14)); // NOI18N
-        jLabel13.setText("Jenis Kelamin");
-        jPanel5.add(jLabel13);
-        jLabel13.setBounds(20, 180, 110, 15);
-
-        jLabel3.setFont(new java.awt.Font("TeXGyreAdventor", 0, 14)); // NOI18N
-        jLabel3.setText("Tempat lahir");
-        jPanel5.add(jLabel3);
-        jLabel3.setBounds(20, 220, 100, 20);
-
-        jLabel14.setFont(new java.awt.Font("TeXGyreAdventor", 0, 14)); // NOI18N
-        jLabel14.setText("Tanggal lahir");
-        jPanel5.add(jLabel14);
-        jLabel14.setBounds(20, 260, 180, 20);
-
-        jLabel5.setFont(new java.awt.Font("TeXGyreAdventor", 0, 14)); // NOI18N
-        jLabel5.setText("Alamat");
-        jPanel5.add(jLabel5);
-        jLabel5.setBounds(20, 310, 70, 15);
-
-        jLabel6.setFont(new java.awt.Font("TeXGyreAdventor", 0, 14)); // NOI18N
-        jLabel6.setText("Kota");
-        jPanel5.add(jLabel6);
-        jLabel6.setBounds(20, 340, 140, 20);
-
-        jLabel16.setFont(new java.awt.Font("TeXGyreAdventor", 0, 14)); // NOI18N
-        jLabel16.setText("Nomor Telepon");
-        jPanel5.add(jLabel16);
-        jLabel16.setBounds(20, 380, 140, 20);
-
-        jLabel15.setFont(new java.awt.Font("TeXGyreAdventor", 0, 14)); // NOI18N
-        jLabel15.setText("Email");
-        jPanel5.add(jLabel15);
-        jLabel15.setBounds(20, 420, 140, 20);
-
-        jLabel9.setFont(new java.awt.Font("TeXGyreAdventor", 0, 14)); // NOI18N
-        jLabel9.setText("ID Psikotes");
-        jPanel5.add(jLabel9);
-        jLabel9.setBounds(400, 110, 100, 20);
-
-        jLabel4.setFont(new java.awt.Font("TeXGyreAdventor", 0, 14)); // NOI18N
-        jLabel4.setText("Ketersediaan");
-        jPanel5.add(jLabel4);
-        jLabel4.setBounds(400, 140, 130, 20);
-
-        jLabel17.setFont(new java.awt.Font("TeXGyreAdventor", 0, 14)); // NOI18N
-        jLabel17.setText("Gaji Harapan");
-        jPanel5.add(jLabel17);
-        jLabel17.setBounds(400, 180, 130, 20);
-
-        jLabel18.setFont(new java.awt.Font("TeXGyreAdventor", 0, 14)); // NOI18N
-        jLabel18.setText("Pendidikan");
-        jPanel5.add(jLabel18);
-        jLabel18.setBounds(400, 220, 130, 20);
-
-        jLabel12.setFont(new java.awt.Font("TeXGyreAdventor", 0, 14)); // NOI18N
-        jLabel12.setText("Status Berkeluarga");
-        jPanel5.add(jLabel12);
-        jLabel12.setBounds(400, 260, 160, 20);
-
-        jLabel19.setFont(new java.awt.Font("TeXGyreAdventor", 0, 14)); // NOI18N
-        jLabel19.setText("Keahlian Pelamar");
-        jPanel5.add(jLabel19);
-        jLabel19.setBounds(400, 300, 160, 20);
-
-        btninsert.setText("Tambahkan");
-        btninsert.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btninsertActionPerformed(evt);
-            }
-        });
-        jPanel5.add(btninsert);
-        btninsert.setBounds(400, 390, 110, 20);
-
-        jLabel21.setFont(new java.awt.Font("TeXGyreAdventor", 0, 14)); // NOI18N
-        jLabel21.setText("Dream Job Pelamar");
-        jPanel5.add(jLabel21);
-        jLabel21.setBounds(400, 340, 160, 20);
-
-        btnemail.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnemailActionPerformed(evt);
-            }
-        });
-        jPanel5.add(btnemail);
-        btnemail.setBounds(140, 420, 170, 30);
-
-        btnnama.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnnamaActionPerformed(evt);
-            }
-        });
-        jPanel5.add(btnnama);
-        btnnama.setBounds(140, 140, 170, 30);
-
-        btnklmn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnklmnActionPerformed(evt);
-            }
-        });
-        jPanel5.add(btnklmn);
-        btnklmn.setBounds(140, 180, 170, 30);
-
-        btntgl.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btntglActionPerformed(evt);
-            }
-        });
-        jPanel5.add(btntgl);
-        btntgl.setBounds(140, 260, 170, 30);
-
-        btnalamat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnalamatActionPerformed(evt);
-            }
-        });
-        jPanel5.add(btnalamat);
-        btnalamat.setBounds(140, 300, 170, 30);
-
-        btnkota.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnkotaActionPerformed(evt);
-            }
-        });
-        jPanel5.add(btnkota);
-        btnkota.setBounds(140, 340, 170, 30);
-
-        btnno.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnnoActionPerformed(evt);
-            }
-        });
-        jPanel5.add(btnno);
-        btnno.setBounds(140, 380, 170, 30);
-
-        btnid.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnidActionPerformed(evt);
-            }
-        });
-        jPanel5.add(btnid);
-        btnid.setBounds(140, 100, 170, 30);
-
-        btnidpsiko.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnidpsikoActionPerformed(evt);
-            }
-        });
-        jPanel5.add(btnidpsiko);
-        btnidpsiko.setBounds(570, 100, 170, 30);
-
-        btngaji.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btngajiActionPerformed(evt);
-            }
-        });
-        jPanel5.add(btngaji);
-        btngaji.setBounds(570, 180, 170, 30);
-
-        btnpendi.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnpendiActionPerformed(evt);
-            }
-        });
-        jPanel5.add(btnpendi);
-        btnpendi.setBounds(570, 220, 170, 30);
-
-        btnkeluarga.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnkeluargaActionPerformed(evt);
-            }
-        });
-        jPanel5.add(btnkeluarga);
-        btnkeluarga.setBounds(570, 260, 170, 30);
-
-        btndream.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btndreamActionPerformed(evt);
-            }
-        });
-        jPanel5.add(btndream);
-        btndream.setBounds(570, 340, 170, 30);
-
-        labelimage.setBackground(new java.awt.Color(0, 0, 0));
-        labelimage.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel5.add(labelimage);
-        labelimage.setBounds(770, 100, 160, 150);
-
-        btnkeahlian.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnkeahlianActionPerformed(evt);
-            }
-        });
-        jPanel5.add(btnkeahlian);
-        btnkeahlian.setBounds(570, 300, 170, 30);
-
-        combokate.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pendidikan", "Teknologi", "Item 3", "Item 4" }));
-        combokate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                combokateActionPerformed(evt);
-            }
-        });
-        jPanel5.add(combokate);
-        combokate.setBounds(770, 300, 120, 25);
-
-        btntpt1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btntpt1ActionPerformed(evt);
-            }
-        });
-        jPanel5.add(btntpt1);
-        btntpt1.setBounds(140, 220, 170, 30);
-
-        combosedia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "vacant", "not_vacant" }));
-        combosedia.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                combosediaActionPerformed(evt);
-            }
-        });
-        jPanel5.add(combosedia);
-        combosedia.setBounds(570, 140, 170, 25);
-        jPanel5.add(jLabel34);
-        jLabel34.setBounds(830, 270, 0, 0);
-
-        jTabbedPane2.addTab("Insert data                                            ", jPanel5);
 
         jPanel6.setLayout(null);
 
@@ -699,18 +483,271 @@ Connect konek = new Connect();
 
         jTabbedPane2.addTab("Edit data                                                     ", jPanel6);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1381, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane2)
-        );
+        jPanel5.setLayout(null);
+
+        jLabel1.setText("Daftar Pelamar Baru");
+        jPanel5.add(jLabel1);
+        jLabel1.setBounds(410, 40, 129, 16);
+
+        jLabel11.setFont(new java.awt.Font("TeXGyreAdventor", 0, 14)); // NOI18N
+        jLabel11.setText("ID");
+        jPanel5.add(jLabel11);
+        jLabel11.setBounds(20, 110, 110, 15);
+
+        jLabel2.setFont(new java.awt.Font("TeXGyreAdventor", 0, 14)); // NOI18N
+        jLabel2.setText("Nama lengkap");
+        jPanel5.add(jLabel2);
+        jLabel2.setBounds(20, 150, 110, 15);
+
+        jLabel13.setFont(new java.awt.Font("TeXGyreAdventor", 0, 14)); // NOI18N
+        jLabel13.setText("Jenis Kelamin");
+        jPanel5.add(jLabel13);
+        jLabel13.setBounds(20, 180, 110, 15);
+
+        jLabel3.setFont(new java.awt.Font("TeXGyreAdventor", 0, 14)); // NOI18N
+        jLabel3.setText("Tempat lahir");
+        jPanel5.add(jLabel3);
+        jLabel3.setBounds(20, 220, 100, 20);
+
+        jLabel14.setFont(new java.awt.Font("TeXGyreAdventor", 0, 14)); // NOI18N
+        jLabel14.setText("Tanggal lahir");
+        jPanel5.add(jLabel14);
+        jLabel14.setBounds(20, 260, 180, 20);
+
+        jLabel5.setFont(new java.awt.Font("TeXGyreAdventor", 0, 14)); // NOI18N
+        jLabel5.setText("Alamat");
+        jPanel5.add(jLabel5);
+        jLabel5.setBounds(20, 310, 70, 15);
+
+        jLabel6.setFont(new java.awt.Font("TeXGyreAdventor", 0, 14)); // NOI18N
+        jLabel6.setText("Kota");
+        jPanel5.add(jLabel6);
+        jLabel6.setBounds(20, 340, 140, 20);
+
+        jLabel16.setFont(new java.awt.Font("TeXGyreAdventor", 0, 14)); // NOI18N
+        jLabel16.setText("Nomor Telepon");
+        jPanel5.add(jLabel16);
+        jLabel16.setBounds(20, 380, 140, 20);
+
+        jLabel15.setFont(new java.awt.Font("TeXGyreAdventor", 0, 14)); // NOI18N
+        jLabel15.setText("Email");
+        jPanel5.add(jLabel15);
+        jLabel15.setBounds(20, 420, 140, 20);
+
+        jLabel9.setFont(new java.awt.Font("TeXGyreAdventor", 0, 14)); // NOI18N
+        jLabel9.setText("ID Psikotes");
+        jPanel5.add(jLabel9);
+        jLabel9.setBounds(400, 110, 100, 20);
+
+        jLabel4.setFont(new java.awt.Font("TeXGyreAdventor", 0, 14)); // NOI18N
+        jLabel4.setText("Ketersediaan");
+        jPanel5.add(jLabel4);
+        jLabel4.setBounds(400, 140, 130, 20);
+
+        jLabel17.setFont(new java.awt.Font("TeXGyreAdventor", 0, 14)); // NOI18N
+        jLabel17.setText("Gaji Harapan");
+        jPanel5.add(jLabel17);
+        jLabel17.setBounds(400, 180, 130, 20);
+
+        jLabel18.setFont(new java.awt.Font("TeXGyreAdventor", 0, 14)); // NOI18N
+        jLabel18.setText("Pendidikan");
+        jPanel5.add(jLabel18);
+        jLabel18.setBounds(400, 220, 130, 20);
+
+        jLabel12.setFont(new java.awt.Font("TeXGyreAdventor", 0, 14)); // NOI18N
+        jLabel12.setText("Status Berkeluarga");
+        jPanel5.add(jLabel12);
+        jLabel12.setBounds(400, 260, 160, 20);
+
+        jLabel19.setFont(new java.awt.Font("TeXGyreAdventor", 0, 14)); // NOI18N
+        jLabel19.setText("Keahlian Pelamar");
+        jPanel5.add(jLabel19);
+        jLabel19.setBounds(400, 300, 160, 20);
+
+        btninsert.setText("Tambahkan");
+        btninsert.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btninsertActionPerformed(evt);
+            }
+        });
+        jPanel5.add(btninsert);
+        btninsert.setBounds(530, 430, 120, 26);
+
+        jLabel21.setFont(new java.awt.Font("TeXGyreAdventor", 0, 14)); // NOI18N
+        jLabel21.setText("Dream Job Pelamar");
+        jPanel5.add(jLabel21);
+        jLabel21.setBounds(400, 340, 160, 20);
+
+        btnemail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnemailActionPerformed(evt);
+            }
+        });
+        jPanel5.add(btnemail);
+        btnemail.setBounds(140, 420, 170, 30);
+
+        btnnama.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnnamaActionPerformed(evt);
+            }
+        });
+        jPanel5.add(btnnama);
+        btnnama.setBounds(140, 140, 170, 30);
+
+        btnklmn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnklmnActionPerformed(evt);
+            }
+        });
+        jPanel5.add(btnklmn);
+        btnklmn.setBounds(140, 180, 170, 30);
+
+        btntgl.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btntglActionPerformed(evt);
+            }
+        });
+        jPanel5.add(btntgl);
+        btntgl.setBounds(140, 260, 170, 30);
+
+        btnalamat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnalamatActionPerformed(evt);
+            }
+        });
+        jPanel5.add(btnalamat);
+        btnalamat.setBounds(140, 300, 170, 30);
+
+        btnkota.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnkotaActionPerformed(evt);
+            }
+        });
+        jPanel5.add(btnkota);
+        btnkota.setBounds(140, 340, 170, 30);
+
+        btnno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnnoActionPerformed(evt);
+            }
+        });
+        jPanel5.add(btnno);
+        btnno.setBounds(140, 380, 170, 30);
+
+        btnid.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnidActionPerformed(evt);
+            }
+        });
+        jPanel5.add(btnid);
+        btnid.setBounds(140, 100, 170, 30);
+
+        btnidpsiko.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnidpsikoActionPerformed(evt);
+            }
+        });
+        jPanel5.add(btnidpsiko);
+        btnidpsiko.setBounds(570, 100, 170, 30);
+
+        btngaji.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btngajiActionPerformed(evt);
+            }
+        });
+        jPanel5.add(btngaji);
+        btngaji.setBounds(570, 180, 170, 30);
+
+        btnpendi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnpendiActionPerformed(evt);
+            }
+        });
+        jPanel5.add(btnpendi);
+        btnpendi.setBounds(570, 220, 170, 30);
+
+        btnkeluarga.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnkeluargaActionPerformed(evt);
+            }
+        });
+        jPanel5.add(btnkeluarga);
+        btnkeluarga.setBounds(570, 260, 170, 30);
+
+        btndream.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btndreamActionPerformed(evt);
+            }
+        });
+        jPanel5.add(btndream);
+        btndream.setBounds(570, 340, 170, 30);
+
+        labelimage.setBackground(new java.awt.Color(0, 0, 0));
+        labelimage.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel5.add(labelimage);
+        labelimage.setBounds(770, 100, 160, 150);
+
+        btnkeahlian.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnkeahlianActionPerformed(evt);
+            }
+        });
+        jPanel5.add(btnkeahlian);
+        btnkeahlian.setBounds(570, 300, 170, 30);
+
+        combokate.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pendidikan", "Teknologi", "Item 3", "Item 4" }));
+        combokate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                combokateActionPerformed(evt);
+            }
+        });
+        jPanel5.add(combokate);
+        combokate.setBounds(770, 300, 120, 25);
+
+        btntpt1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btntpt1ActionPerformed(evt);
+            }
+        });
+        jPanel5.add(btntpt1);
+        btntpt1.setBounds(140, 220, 170, 30);
+
+        combosedia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "vacant", "not_vacant" }));
+        combosedia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                combosediaActionPerformed(evt);
+            }
+        });
+        jPanel5.add(combosedia);
+        combosedia.setBounds(570, 140, 170, 25);
+        jPanel5.add(jLabel34);
+        jLabel34.setBounds(830, 270, 0, 0);
+
+        jButton9.setText("Select File");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
+        jPanel5.add(jButton9);
+        jButton9.setBounds(400, 430, 92, 26);
+
+        jLabel37.setText("Choose File");
+        jPanel5.add(jLabel37);
+        jLabel37.setBounds(400, 390, 65, 16);
+        jPanel5.add(jTextName);
+        jTextName.setBounds(480, 390, 250, 20);
+
+        jLabel36.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/slide1.png"))); // NOI18N
+        jPanel5.add(jLabel36);
+        jLabel36.setBounds(0, 0, 1380, 680);
+        jPanel5.add(jFileChooser1);
+        jFileChooser1.setBounds(780, 250, 500, 326);
+
+        jTabbedPane2.addTab("Insert data                                            ", jPanel5);
+
+        getContentPane().add(jTabbedPane2);
+        jTabbedPane2.setBounds(0, 0, 1381, 710);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -788,6 +825,7 @@ Connect konek = new Connect();
     }//GEN-LAST:event_btnemailActionPerformed
 
     private void btninsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btninsertActionPerformed
+        
         try{
             con=Connect.ConnectDB();
             if (btnid.getText().equals("")) {
@@ -886,22 +924,30 @@ Connect konek = new Connect();
 
         }catch(HeadlessException | SQLException ex){
             JOptionPane.showMessageDialog(this,ex);
-        }
-        JFileChooser fc=new JFileChooser(); fc.showOpenDialog(this); File f=fc.getSelectedFile(); 
-       String path=f.getAbsolutePath(); labelimage.setIcon(new ImageIcon(path)); 
-       try{ 
-           FileInputStream fin=new FileInputStream(f); 
-           int len=(int)f.length();
-           Class.forName("com.mysql.jdbc.Driver");
-           Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/hai","root","abc");
-           PreparedStatement ps=con.prepareStatement("insert into image values(?)");
-           ps.setBinaryStream(1, fin, len); 
-           int status=ps.executeUpdate();
-           if(status > 0) { 
-           jLabel34.setText("Successfully inserted in DB"); 
+        }  
+        String url = "jdbc:mysql://localhost:3306/hai";
+        String user = "root";
+        String password = "abc";
+ 
+        String filePath = jTextName.getText();
+        try {
+            Connection conn = DriverManager.getConnection(url, user, password);
+ 
+            String sql = "INSERT INTO image (image) values (LOAD_FILE(?))";
+            PreparedStatement statement = conn.prepareStatement(sql);
+ 
+            statement.setString(1, filePath);
+ 
+            int row = statement.executeUpdate();
+            if (row > 0) {
+                System.out.println("A contact was inserted with photo image.");
             }
-           else{ jLabel34.setText("Image not inserted!"); } }
-            catch(Exception e){System.out.println(e); }
+            conn.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    
+       
     }//GEN-LAST:event_btninsertActionPerformed
 
     private void txttempatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txttempatActionPerformed
@@ -1078,6 +1124,15 @@ Connect konek = new Connect();
          Get_Data2();
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        JFileChooser OpenFile = new JFileChooser();
+        OpenFile.setMultiSelectionEnabled(false);
+        OpenFile.showOpenDialog(null);
+        File x_file = OpenFile.getSelectedFile();
+        String NamaFile = x_file.getAbsolutePath();
+        jTextName.setText(NamaFile);
+    }//GEN-LAST:event_jButton9ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1141,6 +1196,8 @@ Connect konek = new Connect();
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton9;
+    private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1170,6 +1227,8 @@ Connect konek = new Connect();
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
+    private javax.swing.JLabel jLabel36;
+    private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -1182,6 +1241,7 @@ Connect konek = new Connect();
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane2;
+    private javax.swing.JTextField jTextName;
     private javax.swing.JLabel labelimage;
     private javax.swing.JTable tabelview;
     private javax.swing.JTable tabelview2;

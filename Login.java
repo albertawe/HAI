@@ -3,7 +3,6 @@
  * and open the template in the editor.
  */
 package HAI;
-
 /**
  *
  * @author Raj
@@ -12,26 +11,18 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.sql.*;
 import javax.swing.*;
-
 public class Login extends javax.swing.JFrame {
-
-    MainMenu frmadmin = new MainMenu();
-    Psikotest_Main frmpsikotest = new Psikotest_Main();
-    Connection con = null;
-    ResultSet rs = null;
-    PreparedStatement pst = null;
-    String sql;
-    String strstatus;
-
+Connection con=null;
+ResultSet rs=null;
+PreparedStatement pst=null;
     /**
      * Creates new form Login
      */
     public Login() {
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         initComponents();
-        con = Connect.ConnectDB();
-        //setLocationRelativeTo(null);
-    }
+                //setLocationRelativeTo(null);
+                 }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -68,6 +59,11 @@ public class Login extends javax.swing.JFrame {
         setLocation(new java.awt.Point(0, 0));
         setPreferredSize(new java.awt.Dimension(1280, 776));
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("TeXGyreAdventor", 0, 18)); // NOI18N
@@ -97,6 +93,11 @@ public class Login extends javax.swing.JFrame {
 
         txtPassword.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(153, 153, 153)));
         txtPassword.setOpaque(false);
+        txtPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPasswordActionPerformed(evt);
+            }
+        });
         txtPassword.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtPasswordKeyPressed(evt);
@@ -106,12 +107,17 @@ public class Login extends javax.swing.JFrame {
         txtPassword.setBounds(540, 330, 166, 17);
 
         btnOK.setBackground(new java.awt.Color(0, 0, 0));
-        btnOK.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/dsasdasda.PNG"))); // NOI18N
+        btnOK.setIcon(new javax.swing.ImageIcon("C:\\java\\HAI\\src\\image\\dsasdasda.PNG")); // NOI18N
         btnOK.setBorder(null);
         btnOK.setOpaque(false);
         btnOK.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnOKMouseClicked(evt);
+            }
+        });
+        btnOK.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOKActionPerformed(evt);
             }
         });
         getContentPane().add(btnOK);
@@ -153,107 +159,100 @@ public class Login extends javax.swing.JFrame {
         getContentPane().add(jLabel4);
         jLabel4.setBounds(440, 300, 110, 20);
 
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/hero.jpg"))); // NOI18N
+        jLabel8.setIcon(new javax.swing.ImageIcon("C:\\java\\HAI\\src\\image\\hero.jpg")); // NOI18N
         getContentPane().add(jLabel8);
         jLabel8.setBounds(0, 0, 1280, 760);
 
         setSize(new java.awt.Dimension(1296, 806));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void lakukanlogin() {
-        try {
-            con = Connect.ConnectDB();
-            sql = "select status from tblogin where id= '"
-                    + txtUserName.getText() + "' and pass ='"
-                    + String.valueOf(txtPassword.getPassword()) + "'";
-
-            pst = con.prepareStatement(sql);
-            rs = pst.executeQuery();
-           
-            this.setVisible(false);
-
-            if (rs.next()) {
-                 strstatus = rs.getString("status");
-                JOptionPane.showMessageDialog(null, "Login Success!", "Access denied", JOptionPane.ERROR_MESSAGE);
-                if (strstatus.equals("admin")) {
-                    
-                    //masuk ke mainform admin
-                    this.hide();
-                    MainMenu frmMainMenu = new MainMenu();
-                    frmMainMenu.setVisible(true);
-
-                } else if (strstatus.equals("psikolog")) {
-                    //masuk ke mainform psikolog
-
-                    this.hide();
-                      Psikotest_Main frmMainMenu = new Psikotest_Main();
-                    frmpsikotest.setVisible(true);
-
-                } else {
-
-                }
-
-            } else {
-
-                JOptionPane.showMessageDialog(null, "Login Failed..Try again !", "Access denied", JOptionPane.ERROR_MESSAGE);
-                txtUserName.setText("");
-                txtPassword.setText("");
-
-            }
-        } catch (SQLException | HeadlessException e) {
-            JOptionPane.showMessageDialog(null, e);
-
-        }
-    }
+    
     private void txtUserNameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtUserNameMouseClicked
         // TODO add your handling code here:
-
+     
     }//GEN-LAST:event_txtUserNameMouseClicked
 
-    private void btnOKMouseClicked(java.awt.event.MouseEvent evt) {
-        if (txtUserName.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "Please enter user name", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-
-        }
-        String Password = String.valueOf(txtPassword.getPassword());
+    private void btnOKMouseClicked(java.awt.event.MouseEvent evt) {                                   
+    if (txtUserName.getText().equals("")) {
+           JOptionPane.showMessageDialog( this, "Please enter user name","Error", JOptionPane.ERROR_MESSAGE);
+           return;
+            
+            }
+    String Password= String.valueOf(txtPassword.getPassword());
         if (Password.equals("")) {
-            JOptionPane.showMessageDialog(this, "Please enter password", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-
-        }
-
-        lakukanlogin();
-    }
-
+           JOptionPane.showMessageDialog( this, "Please enter password","Error", JOptionPane.ERROR_MESSAGE);
+           return;
+          
+            }
+      con=Connect.ConnectDB();
+      String sql= "select * from users where username= '" + txtUserName.getText() + "'"
+              + " and password ='" + txtPassword.getText() + "'";
+      try
+      {
+          pst=con.prepareStatement(sql);
+          rs= pst.executeQuery();
+          if (rs.next()){
+             this.hide();
+             MainMenu frm=new MainMenu();
+             frm.setVisible(true);
+          }
+          else{
+              
+            JOptionPane.showMessageDialog(null, "Login Failed..Try again !","Access denied",JOptionPane.ERROR_MESSAGE);
+          }
+      }catch(SQLException | HeadlessException e){
+         JOptionPane.showMessageDialog(null, e); 
+          
+    }                                     
+    }                                  
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_btnCancelActionPerformed
 
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+   
+    }//GEN-LAST:event_formWindowOpened
+
     private void txtUserNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUserNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtUserNameActionPerformed
 
     private void txtPasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPasswordKeyPressed
-
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            if (txtUserName.getText().equals("")) {
-                JOptionPane.showMessageDialog(this, "Please enter user name", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-
-            }
-            String Password = String.valueOf(txtPassword.getPassword());
-            if (Password.equals("")) {
-                JOptionPane.showMessageDialog(this, "Please enter password", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-
-            }
-
-        }
+     if (evt.getKeyCode()==KeyEvent.VK_ENTER){
+           con=Connect.ConnectDB();
+      String sql= "select * from users where username= '" + txtUserName.getText() + "' and password ='" + txtPassword.getText() + "'";
+      try
+      {
+          pst=con.prepareStatement(sql);
+          rs= pst.executeQuery();
+          if (rs.next()){
+             this.hide();
+             MainMenu frm=new MainMenu();
+             frm.setVisible(true);
+          }
+          else{
+              
+            JOptionPane.showMessageDialog(null, "Login Failed..Try again !","Access denied",JOptionPane.ERROR_MESSAGE);
+            txtUserName.setText("");
+            txtPassword.setText("");
+            txtUserName.requestDefaultFocus();
+         }
+      }catch(SQLException | HeadlessException e){
+         JOptionPane.showMessageDialog(null, e); 
+          
+    }            
+     }
     }//GEN-LAST:event_txtPasswordKeyPressed
+
+    private void btnOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOKActionPerformed
+      
+    }//GEN-LAST:event_btnOKActionPerformed
+
+    private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPasswordActionPerformed
 
     /**
      * @param args the command line arguments
@@ -278,17 +277,19 @@ public class Login extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-
+            
             @Override
-            public void run() {
-                try {
-                    Thread.sleep(4500);
-                } catch (Exception e) {
-
-                }
-                new Login().setVisible(true);
-
+            public void run()  {
+                    try{
+                Thread.sleep(4500); 
             }
+                    catch(Exception e)
+                    {
+                        
+                    }
+                new Login().setVisible(true);
+            
+        }
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
