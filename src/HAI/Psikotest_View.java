@@ -85,7 +85,7 @@ public class Psikotest_View extends javax.swing.JFrame {
 
         jLabel1.setText("Search");
 
-        jMenu1.setText("File");
+        jMenu1.setText("Menu");
 
         mnadd.setText("Add New");
         mnadd.addActionListener(new java.awt.event.ActionListener() {

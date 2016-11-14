@@ -16,7 +16,6 @@ import javax.swing.*;
 public class Login extends javax.swing.JFrame {
 
     MainMenu frmadmin = new MainMenu();
-
     Connection con = null;
     ResultSet rs = null;
     PreparedStatement pst = null;
@@ -50,13 +49,13 @@ public class Login extends javax.swing.JFrame {
         txtUserName = new javax.swing.JTextField();
         txtPassword = new javax.swing.JPasswordField();
         btnOK = new javax.swing.JButton();
-        btnCancel = new javax.swing.JButton();
         filler2 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        btnOK1 = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
 
         jMenuItem1.setText("jMenuItem1");
@@ -121,19 +120,6 @@ public class Login extends javax.swing.JFrame {
         });
         getContentPane().add(btnOK);
         btnOK.setBounds(540, 360, 60, 30);
-
-        btnCancel.setForeground(new java.awt.Color(240, 240, 240));
-        btnCancel.setToolTipText("");
-        btnCancel.setBorder(null);
-        btnCancel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnCancel.setOpaque(false);
-        btnCancel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnCancel);
-        btnCancel.setBounds(620, 360, 60, 30);
         getContentPane().add(filler2);
         filler2.setBounds(89, 517, 86, 11);
 
@@ -158,6 +144,23 @@ public class Login extends javax.swing.JFrame {
         getContentPane().add(jLabel4);
         jLabel4.setBounds(440, 300, 110, 20);
 
+        btnOK1.setBackground(new java.awt.Color(0, 0, 0));
+        btnOK1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/dsasdasd.png"))); // NOI18N
+        btnOK1.setBorder(null);
+        btnOK1.setOpaque(false);
+        btnOK1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnOK1MouseClicked(evt);
+            }
+        });
+        btnOK1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOK1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnOK1);
+        btnOK1.setBounds(610, 360, 60, 30);
+
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/hero.jpg"))); // NOI18N
         getContentPane().add(jLabel8);
         jLabel8.setBounds(0, 0, 1280, 760);
@@ -176,11 +179,11 @@ public class Login extends javax.swing.JFrame {
             pst = con.prepareStatement(sql);
             rs = pst.executeQuery();
            
-            this.setVisible(false);
+            
 
             if (rs.next()) {
                  strstatus = rs.getString("status");
-                JOptionPane.showMessageDialog(null, "Login Success!", "Access denied", JOptionPane.ERROR_MESSAGE);
+                
                 if (strstatus.equals("admin")) {
                     
                     //masuk ke mainform admin
@@ -233,11 +236,6 @@ public class Login extends javax.swing.JFrame {
     }
 
 
-    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
-        // TODO add your handling code here:
-        System.exit(0);
-    }//GEN-LAST:event_btnCancelActionPerformed
-
     private void txtUserNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUserNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtUserNameActionPerformed
@@ -259,6 +257,16 @@ public class Login extends javax.swing.JFrame {
 
         }
     }//GEN-LAST:event_txtPasswordKeyPressed
+
+    private void btnOK1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnOK1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnOK1MouseClicked
+
+    private void btnOK1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOK1ActionPerformed
+                    this.hide();
+                    signup frmup = new signup();
+                    frmup.setVisible(true);
+    }//GEN-LAST:event_btnOK1ActionPerformed
 
     private void btnOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOKActionPerformed
         // TODO add your handling code here:
@@ -301,8 +309,8 @@ public class Login extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnOK;
+    private javax.swing.JButton btnOK1;
     private javax.swing.Box.Filler filler1;
     private javax.swing.Box.Filler filler2;
     private javax.swing.JLabel jLabel1;

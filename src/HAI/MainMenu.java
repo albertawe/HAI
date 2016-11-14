@@ -7,7 +7,8 @@ package HAI;
 
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 import java.awt.HeadlessException;
-
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.sql.Connection;
 
 import java.sql.Statement;
@@ -48,7 +49,7 @@ PreparedStatement pst=null;
 Connect konek = new Connect();
 File imageFile = null;
 MysqlDataSource myDb = null;
-        
+int timerun = 0;        
 
 
 
@@ -65,9 +66,32 @@ MysqlDataSource myDb = null;
         Get_Data();
         Get_Data2();
         setLocationRelativeTo(null);
-
-    }
-    
+        new Thread(){
+            public void run(){
+                while (timerun == 0)
+                {
+                    Calendar cal = new GregorianCalendar();
+                    
+                    int hour = cal.get(Calendar.HOUR);
+                    int min = cal.get(Calendar.MINUTE);
+                    int sec = cal.get(Calendar.SECOND);
+                    int AM_PM = cal.get(Calendar.AM_PM);
+                    
+                    String day_night = "";
+                    if (AM_PM == 1){
+                        day_night = "PM";
+                    }
+                    else
+                    {
+                        day_night = "AM";
+                    }
+                    String time = hour + ":" + min + ":" + sec + " " + day_night;
+                    
+                    Clock.setText(time);
+                }
+            }
+    }.start();
+                }
        
 
     
@@ -91,6 +115,26 @@ MysqlDataSource myDb = null;
     txtdream.setText("");
     combokate1.setSelectedIndex(-1);
     Get_Data2();
+}
+        private void Reset1()
+{
+    btnid.setText("");
+    btnnama.setText("");
+    btnklmn.setText("");
+    btntpt1.setText("");
+    btntgl.setText("");
+    btnalamat.setText("");
+    btnkota.setText("");
+    btnno.setText("");
+    btnemail.setText("");
+    btnidpsiko.setText("");
+    combosedia.setSelectedIndex(-1);
+    btngaji.setText("");
+    btnpendi.setText("");
+    btnkeluarga.setText("");
+    btnkeahlian.setText("");
+    btndream.setText("");
+    combokate.setSelectedIndex(-1);
 }
         private void Get_Data(){
         String sql="select * from tbdatapelamar";
@@ -134,6 +178,8 @@ MysqlDataSource myDb = null;
         jButton3 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelview = new javax.swing.JTable();
+        jButton6 = new javax.swing.JButton();
+        Clock = new javax.swing.JLabel();
         jLabel35 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -175,6 +221,8 @@ MysqlDataSource myDb = null;
         btndelete = new javax.swing.JButton();
         combosedia1 = new javax.swing.JComboBox<>();
         jButton2 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
+        jLabel38 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -216,8 +264,9 @@ MysqlDataSource myDb = null;
         jButton9 = new javax.swing.JButton();
         jLabel37 = new javax.swing.JLabel();
         jTextName = new javax.swing.JTextField();
+        jButton5 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
         jLabel36 = new javax.swing.JLabel();
-        jFileChooser1 = new javax.swing.JFileChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -269,6 +318,22 @@ MysqlDataSource myDb = null;
 
         jPanel4.add(jScrollPane1);
         jScrollPane1.setBounds(0, 0, 1380, 220);
+
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/sda.png"))); // NOI18N
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jButton6);
+        jButton6.setBounds(1291, 610, 50, 20);
+
+        Clock.setFont(new java.awt.Font("Digital-7", 0, 60)); // NOI18N
+        Clock.setForeground(new java.awt.Color(0, 165, 255));
+        Clock.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Clock.setToolTipText("");
+        jPanel4.add(Clock);
+        Clock.setBounds(490, 220, 410, 90);
 
         jLabel35.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Untitled-1.png"))); // NOI18N
         jPanel4.add(jLabel35);
@@ -481,6 +546,19 @@ MysqlDataSource myDb = null;
         jPanel6.add(jButton2);
         jButton2.setBounds(10, 260, 76, 26);
 
+        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/sda.png"))); // NOI18N
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+        jPanel6.add(jButton7);
+        jButton7.setBounds(1291, 610, 50, 20);
+
+        jLabel38.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/L5fanw.jpg"))); // NOI18N
+        jPanel6.add(jLabel38);
+        jLabel38.setBounds(0, 70, 1440, 610);
+
         jTabbedPane2.addTab("Edit data                                                     ", jPanel6);
 
         jPanel5.setLayout(null);
@@ -502,7 +580,7 @@ MysqlDataSource myDb = null;
         jLabel13.setFont(new java.awt.Font("TeXGyreAdventor", 0, 14)); // NOI18N
         jLabel13.setText("Jenis Kelamin");
         jPanel5.add(jLabel13);
-        jLabel13.setBounds(20, 180, 110, 15);
+        jLabel13.setBounds(20, 190, 110, 15);
 
         jLabel3.setFont(new java.awt.Font("TeXGyreAdventor", 0, 14)); // NOI18N
         jLabel3.setText("Tempat lahir");
@@ -695,14 +773,16 @@ MysqlDataSource myDb = null;
         jPanel5.add(btnkeahlian);
         btnkeahlian.setBounds(570, 300, 170, 30);
 
-        combokate.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pendidikan", "Teknologi", "Item 3", "Item 4" }));
+        combokate.setBackground(new java.awt.Color(255, 255, 255));
+        combokate.setForeground(new java.awt.Color(102, 102, 102));
+        combokate.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih Kategori", "Administrasi Eksekutif", "Administrasi Pemerintahan", "Akuntansi", "Alat medis", "Alat olahraga", "Alat dan perlengkapan bisnis", "Animasi", "Arsitektur dan perancangan", "Asuransi", "Aviasi & penerbangan", "Bahan kimia", "Barang konsumsi", "Barang mewah & perhiasan", "Barang-barang elektronik", "Belajar Online", "Bioteknologi", "Daur ulang & Lingkungan", "Desain", "Desain Grafis", "Farmasi", "Fasilitas & Layanan Rekreasi", "Fotografi", "Gambar bergerak & film", "Game komputer", "Hiburan", "Hubungan Internasional", "Hubungan masyarakat", "Hubungan Pemerintah", "impor & ekspor", "Internet", "Jaringan komputer", "Jasa Keuangan", "Judi & kasino", "kaca, keramik & beton", "Kantor legislatif", "Keamanan & investigasi", "Keamanan publik ", "Kebijakan publik", "kedermawaan", "Manajemen Organisasi Nirlaba", "Manajemen pendidikan", "Manajemen jalur kereta api", "Manufaktur listrik dan Elektronik", "Maritim", "Maskapai penerbangan", "Material Bangunan", "Media cetak", "Media Penyiaran", "Militer", "Minyak dan energi", "Modal Usaha", "Museum & Institusi", "Musik", "Nanoteknologi", "Nirkabel", "Olahraga", "Organisasi politik", "Organisasi sosial", "Otomasi industri", "Otomotif", "Pakaian & Mode", "Penerbitan", "Penerjamahan", "Perabot Rumah Tangga", "Peradilan", "Praktik Hukum", "Real estate", "Research", "Restoran", "Riset pasar", "Ritel", "Sumber Daya Manusia", "Supermarket", "Teknik Mesin dan Industri", "Teknik Sipil" }));
         combokate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 combokateActionPerformed(evt);
             }
         });
         jPanel5.add(combokate);
-        combokate.setBounds(770, 300, 120, 25);
+        combokate.setBounds(770, 300, 190, 25);
 
         btntpt1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -723,14 +803,14 @@ MysqlDataSource myDb = null;
         jPanel5.add(jLabel34);
         jLabel34.setBounds(830, 270, 0, 0);
 
-        jButton9.setText("Select File");
+        jButton9.setText("Pilih File");
         jButton9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton9ActionPerformed(evt);
             }
         });
         jPanel5.add(jButton9);
-        jButton9.setBounds(400, 430, 92, 26);
+        jButton9.setBounds(430, 430, 80, 26);
 
         jLabel37.setText("Choose File");
         jPanel5.add(jLabel37);
@@ -738,11 +818,27 @@ MysqlDataSource myDb = null;
         jPanel5.add(jTextName);
         jTextName.setBounds(480, 390, 250, 20);
 
+        jButton5.setText("new");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        jPanel5.add(jButton5);
+        jButton5.setBounds(660, 430, 70, 26);
+
+        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/sda.png"))); // NOI18N
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+        jPanel5.add(jButton8);
+        jButton8.setBounds(1291, 610, 50, 20);
+
         jLabel36.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/slide1.png"))); // NOI18N
         jPanel5.add(jLabel36);
         jLabel36.setBounds(0, 0, 1380, 680);
-        jPanel5.add(jFileChooser1);
-        jFileChooser1.setBounds(780, 250, 500, 326);
 
         jTabbedPane2.addTab("Insert data                                            ", jPanel5);
 
@@ -912,7 +1008,7 @@ MysqlDataSource myDb = null;
             }
             String sql= "insert into tbdatapelamar(idPelamar,nama,jenisKelamin,TempatLahir,TanggalLahir,alamat,Kota,noTelp,email,idPsikotest,"
             + "ketersediaan,gajiHarapan,pendidikan,statusberkeluarga,keahlian,Dream_Job,kategori)values('"+
-            btnid.getText() + "','"+ btnnama.getText() + "','"+ btnklmn.getText() + "','"+ btntgl.getText() + "','"
+            btnid.getText() + "','"+ btnnama.getText() + "','"+ btnklmn.getText() + "','"+ btntpt1.getText() + "','"
             + btntgl.getText() + "','" + btnalamat.getText() + "','"+ btnkota.getText() + "','" + btnno.getText() + "','"
             + btnemail.getText() + "','"+ btnidpsiko.getText() + "','"+ combosedia.getSelectedItem() + "','"+ btngaji.getText() + "','"
             + btnpendi.getText() + "','"+ btnkeluarga.getText() + "','"+ btnkeahlian.getText() + "','"+ btndream.getText() + "','"+ combokate.getSelectedItem() + "')";
@@ -1076,7 +1172,7 @@ MysqlDataSource myDb = null;
         {
             Statement st = con.createStatement();
             String search = txtsearch.getText();
-            ResultSet rs = st.executeQuery("SELECT * FROM tbdatapelamar WHERE idPelamar like '%"+search+"%' OR nama like '%"+search+"%'");
+            ResultSet rs = st.executeQuery("SELECT * FROM tbdatapelamar WHERE idPelamar like '%"+search+"%' OR nama like '%"+search+"%' OR kota like '%"+search+"%'OR idPsikotest like '%"+search+"%'OR pendidikan like '%"+search+"%'OR kategori like '%"+search+"%'");
             DefaultTableModel dtm = (DefaultTableModel)tabelview.getModel();
 
             dtm.setRowCount(0);
@@ -1102,7 +1198,6 @@ MysqlDataSource myDb = null;
                     data[14] = rs.getString("keahlian");
                     data[15] = rs.getString("Dream_Job");
                     data[16] = rs.getString("kategori");
-                    data[17] = rs.getString("pasfoto");
                 dtm.addRow(data);
                 i++;
             }
@@ -1132,6 +1227,29 @@ MysqlDataSource myDb = null;
         String NamaFile = x_file.getAbsolutePath();
         jTextName.setText(NamaFile);
     }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        Reset1();
+        btninsert.setVisible(true);
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+                    this.hide();
+                    Login frmlogin = new Login();
+                    frmlogin.setVisible(true);
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+                    this.hide();
+                    Login frmlogin = new Login();
+                    frmlogin.setVisible(true);
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+                    this.hide();
+                    Login frmlogin = new Login();
+                    frmlogin.setVisible(true);
+    }//GEN-LAST:event_jButton8ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1169,6 +1287,7 @@ MysqlDataSource myDb = null;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Clock;
     private javax.swing.JTextField btnalamat;
     private javax.swing.JButton btndelete;
     private javax.swing.JTextField btndream;
@@ -1196,8 +1315,11 @@ MysqlDataSource myDb = null;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
-    private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1229,6 +1351,7 @@ MysqlDataSource myDb = null;
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
+    private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
