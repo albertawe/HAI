@@ -124,6 +124,38 @@
                 </Component>
               </SubComponents>
             </Container>
+            <Component class="javax.swing.JButton" name="jButton6">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/image/sda.png"/>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton6ActionPerformed"/>
+              </Events>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                  <AbsoluteConstraints x="1291" y="610" width="50" height="20"/>
+                </Constraint>
+              </Constraints>
+            </Component>
+            <Component class="javax.swing.JLabel" name="Clock">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Digital-7" size="60" style="0"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="a5" red="0" type="rgb"/>
+                </Property>
+                <Property name="horizontalAlignment" type="int" value="0"/>
+                <Property name="toolTipText" type="java.lang.String" value=""/>
+              </Properties>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                  <AbsoluteConstraints x="490" y="220" width="410" height="90"/>
+                </Constraint>
+              </Constraints>
+            </Component>
             <Component class="javax.swing.JLabel" name="jLabel35">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
@@ -598,6 +630,33 @@
                 </Constraint>
               </Constraints>
             </Component>
+            <Component class="javax.swing.JButton" name="jButton7">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/image/sda.png"/>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton7ActionPerformed"/>
+              </Events>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                  <AbsoluteConstraints x="1291" y="610" width="50" height="20"/>
+                </Constraint>
+              </Constraints>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel38">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/image/L5fanw.jpg"/>
+                </Property>
+              </Properties>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                  <AbsoluteConstraints x="0" y="70" width="1440" height="610"/>
+                </Constraint>
+              </Constraints>
+            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="jPanel5">
@@ -658,7 +717,7 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="20" y="180" width="110" height="-1"/>
+                  <AbsoluteConstraints x="20" y="190" width="110" height="-1"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -1001,12 +1060,90 @@
             </Component>
             <Component class="javax.swing.JComboBox" name="combokate">
               <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="66" green="66" red="66" type="rgb"/>
+                </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="4">
-                    <StringItem index="0" value="Pendidikan"/>
-                    <StringItem index="1" value="Teknologi"/>
-                    <StringItem index="2" value="Item 3"/>
-                    <StringItem index="3" value="Item 4"/>
+                  <StringArray count="76">
+                    <StringItem index="0" value="Pilih Kategori"/>
+                    <StringItem index="1" value="Administrasi Eksekutif"/>
+                    <StringItem index="2" value="Administrasi Pemerintahan"/>
+                    <StringItem index="3" value="Akuntansi"/>
+                    <StringItem index="4" value="Alat medis"/>
+                    <StringItem index="5" value="Alat olahraga"/>
+                    <StringItem index="6" value="Alat dan perlengkapan bisnis"/>
+                    <StringItem index="7" value="Animasi"/>
+                    <StringItem index="8" value="Arsitektur dan perancangan"/>
+                    <StringItem index="9" value="Asuransi"/>
+                    <StringItem index="10" value="Aviasi &amp; penerbangan"/>
+                    <StringItem index="11" value="Bahan kimia"/>
+                    <StringItem index="12" value="Barang konsumsi"/>
+                    <StringItem index="13" value="Barang mewah &amp; perhiasan"/>
+                    <StringItem index="14" value="Barang-barang elektronik"/>
+                    <StringItem index="15" value="Belajar Online"/>
+                    <StringItem index="16" value="Bioteknologi"/>
+                    <StringItem index="17" value="Daur ulang &amp; Lingkungan"/>
+                    <StringItem index="18" value="Desain"/>
+                    <StringItem index="19" value="Desain Grafis"/>
+                    <StringItem index="20" value="Farmasi"/>
+                    <StringItem index="21" value="Fasilitas &amp; Layanan Rekreasi"/>
+                    <StringItem index="22" value="Fotografi"/>
+                    <StringItem index="23" value="Gambar bergerak &amp; film"/>
+                    <StringItem index="24" value="Game komputer"/>
+                    <StringItem index="25" value="Hiburan"/>
+                    <StringItem index="26" value="Hubungan Internasional"/>
+                    <StringItem index="27" value="Hubungan masyarakat"/>
+                    <StringItem index="28" value="Hubungan Pemerintah"/>
+                    <StringItem index="29" value="impor &amp; ekspor"/>
+                    <StringItem index="30" value="Internet"/>
+                    <StringItem index="31" value="Jaringan komputer"/>
+                    <StringItem index="32" value="Jasa Keuangan"/>
+                    <StringItem index="33" value="Judi &amp; kasino"/>
+                    <StringItem index="34" value="kaca, keramik &amp; beton"/>
+                    <StringItem index="35" value="Kantor legislatif"/>
+                    <StringItem index="36" value="Keamanan &amp; investigasi"/>
+                    <StringItem index="37" value="Keamanan publik "/>
+                    <StringItem index="38" value="Kebijakan publik"/>
+                    <StringItem index="39" value="kedermawaan"/>
+                    <StringItem index="40" value="Manajemen Organisasi Nirlaba"/>
+                    <StringItem index="41" value="Manajemen pendidikan"/>
+                    <StringItem index="42" value="Manajemen jalur kereta api"/>
+                    <StringItem index="43" value="Manufaktur listrik dan Elektronik"/>
+                    <StringItem index="44" value="Maritim"/>
+                    <StringItem index="45" value="Maskapai penerbangan"/>
+                    <StringItem index="46" value="Material Bangunan"/>
+                    <StringItem index="47" value="Media cetak"/>
+                    <StringItem index="48" value="Media Penyiaran"/>
+                    <StringItem index="49" value="Militer"/>
+                    <StringItem index="50" value="Minyak dan energi"/>
+                    <StringItem index="51" value="Modal Usaha"/>
+                    <StringItem index="52" value="Museum &amp; Institusi"/>
+                    <StringItem index="53" value="Musik"/>
+                    <StringItem index="54" value="Nanoteknologi"/>
+                    <StringItem index="55" value="Nirkabel"/>
+                    <StringItem index="56" value="Olahraga"/>
+                    <StringItem index="57" value="Organisasi politik"/>
+                    <StringItem index="58" value="Organisasi sosial"/>
+                    <StringItem index="59" value="Otomasi industri"/>
+                    <StringItem index="60" value="Otomotif"/>
+                    <StringItem index="61" value="Pakaian &amp; Mode"/>
+                    <StringItem index="62" value="Penerbitan"/>
+                    <StringItem index="63" value="Penerjamahan"/>
+                    <StringItem index="64" value="Perabot Rumah Tangga"/>
+                    <StringItem index="65" value="Peradilan"/>
+                    <StringItem index="66" value="Praktik Hukum"/>
+                    <StringItem index="67" value="Real estate"/>
+                    <StringItem index="68" value="Research"/>
+                    <StringItem index="69" value="Restoran"/>
+                    <StringItem index="70" value="Riset pasar"/>
+                    <StringItem index="71" value="Ritel"/>
+                    <StringItem index="72" value="Sumber Daya Manusia"/>
+                    <StringItem index="73" value="Supermarket"/>
+                    <StringItem index="74" value="Teknik Mesin dan Industri"/>
+                    <StringItem index="75" value="Teknik Sipil"/>
                   </StringArray>
                 </Property>
               </Properties>
@@ -1018,7 +1155,7 @@
               </AuxValues>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="770" y="300" width="120" height="-1"/>
+                  <AbsoluteConstraints x="770" y="300" width="190" height="-1"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -1062,14 +1199,14 @@
             </Component>
             <Component class="javax.swing.JButton" name="jButton9">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Select File"/>
+                <Property name="text" type="java.lang.String" value="Pilih File"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton9ActionPerformed"/>
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="400" y="430" width="-1" height="-1"/>
+                  <AbsoluteConstraints x="430" y="430" width="-1" height="-1"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -1090,6 +1227,34 @@
                 </Constraint>
               </Constraints>
             </Component>
+            <Component class="javax.swing.JButton" name="jButton5">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="new"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton5ActionPerformed"/>
+              </Events>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                  <AbsoluteConstraints x="660" y="430" width="70" height="-1"/>
+                </Constraint>
+              </Constraints>
+            </Component>
+            <Component class="javax.swing.JButton" name="jButton8">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/image/sda.png"/>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton8ActionPerformed"/>
+              </Events>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                  <AbsoluteConstraints x="1291" y="610" width="50" height="20"/>
+                </Constraint>
+              </Constraints>
+            </Component>
             <Component class="javax.swing.JLabel" name="jLabel36">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
@@ -1099,13 +1264,6 @@
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                   <AbsoluteConstraints x="0" y="0" width="1380" height="680"/>
-                </Constraint>
-              </Constraints>
-            </Component>
-            <Component class="javax.swing.JFileChooser" name="jFileChooser1">
-              <Constraints>
-                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="780" y="250" width="-1" height="-1"/>
                 </Constraint>
               </Constraints>
             </Component>
