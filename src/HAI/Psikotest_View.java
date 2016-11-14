@@ -5,17 +5,32 @@
  */
 package HAI;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import net.proteanit.sql.DbUtils;
+
 /**
  *
  * @author Ivan Rezki
  */
 public class Psikotest_View extends javax.swing.JFrame {
-
+    
+    Connection con = null;
+    ResultSet rs = null;
+    PreparedStatement pst = null;
+    String sql;
     /**
      * Creates new form Psikotest_View
      */
     public Psikotest_View() {
         initComponents();
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
+        con = Connect.ConnectDB();
+        Get_Data();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -29,11 +44,19 @@ public class Psikotest_View extends javax.swing.JFrame {
 
         jFileChooser1 = new javax.swing.JFileChooser();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tableview = new javax.swing.JTable();
+        tfsearch = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        mnadd = new javax.swing.JMenuItem();
+        mnedit = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JPopupMenu.Separator();
+        jMenuItem3 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tableview.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
@@ -52,26 +75,110 @@ public class Psikotest_View extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tableview);
+
+        tfsearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tfsearchKeyReleased(evt);
+            }
+        });
+
+        jLabel1.setText("Search");
+
+        jMenu1.setText("File");
+
+        mnadd.setText("Add New");
+        mnadd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnaddActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mnadd);
+
+        mnedit.setText("Edit");
+        mnedit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mneditActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mnedit);
+        jMenu1.add(jSeparator1);
+
+        jMenuItem3.setText("Logout");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem3);
+
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 553, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 553, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(72, 72, 72)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tfsearch, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(58, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tfsearch, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void tfsearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfsearchKeyReleased
+        // TODO add your handling code here:
+        String strsearch=tfsearch.getText();
+        sql = "select * from tbpsikotest where idPsikotest like '%" + strsearch + "%'";
+        try {
+            pst = con.prepareStatement(sql);
+            rs = pst.executeQuery();
+            tableview.setModel(DbUtils.resultSetToTableModel(rs));
+            tableview.setDefaultEditor(Object.class, null);
+            tableview.setAutoCreateRowSorter(true);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+
+        }
+    }//GEN-LAST:event_tfsearchKeyReleased
+
+    private void mneditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mneditActionPerformed
+        // TODO add your handling code here:
+        Psikotest_Edit frmedit = new Psikotest_Edit();
+        frmedit.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_mneditActionPerformed
+
+    private void mnaddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnaddActionPerformed
+        // TODO add your handling code here:
+        Psikotest_add frmadd = new Psikotest_add();
+        frmadd.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_mnaddActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        // TODO add your handling code here:
+        Login frmlogin = new Login();
+        frmlogin.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -107,10 +214,31 @@ public class Psikotest_View extends javax.swing.JFrame {
             }
         });
     }
+    
+     private void Get_Data() {
+        sql = "select * from tbpsikotest";
+        try {
+            pst = con.prepareStatement(sql);
+            rs = pst.executeQuery();
+            tableview.setModel(DbUtils.resultSetToTableModel(rs));
+            tableview.setDefaultEditor(Object.class, null);
+            tableview.setAutoCreateRowSorter(true);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JFileChooser jFileChooser1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JMenuItem mnadd;
+    private javax.swing.JMenuItem mnedit;
+    private javax.swing.JTable tableview;
+    private javax.swing.JTextField tfsearch;
     // End of variables declaration//GEN-END:variables
 }

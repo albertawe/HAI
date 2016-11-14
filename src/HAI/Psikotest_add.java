@@ -66,16 +66,14 @@ public class Psikotest_add extends javax.swing.JFrame {
         btnAdd = new java.awt.Button();
         btnCancel = new java.awt.Button();
         lbfilename = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
-        jButton5 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         tableview = new javax.swing.JTable();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
+        mnedit = new javax.swing.JMenuItem();
+        mnview = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JPopupMenu.Separator();
+        mnlogout = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -140,22 +138,6 @@ public class Psikotest_add extends javax.swing.JFrame {
         lbfilename.setText("File Name");
         panel1.add(lbfilename);
         lbfilename.setBounds(230, 140, 70, 20);
-        lbfilename.getAccessibleContext().setAccessibleName("File Name");
-
-        jLabel1.setText("Nama");
-
-        jFormattedTextField1.setText("PHOTO");
-        jFormattedTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFormattedTextField1ActionPerformed(evt);
-            }
-        });
-
-        jButton5.setText("VIEW");
-
-        jButton4.setText("EDIT");
-
-        jButton6.setText("ADD");
 
         tableview.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -170,11 +152,34 @@ public class Psikotest_add extends javax.swing.JFrame {
         ));
         jScrollPane3.setViewportView(tableview);
 
-        jMenu1.setText("File");
-        jMenuBar1.add(jMenu1);
+        jMenu1.setText("Menu");
 
-        jMenu2.setText("Edit");
-        jMenuBar1.add(jMenu2);
+        mnedit.setText("Edit");
+        mnedit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mneditActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mnedit);
+
+        mnview.setText("View");
+        mnview.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnviewActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mnview);
+        jMenu1.add(jSeparator1);
+
+        mnlogout.setText("Logout");
+        mnlogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnlogoutActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mnlogout);
+
+        jMenuBar1.add(jMenu1);
 
         setJMenuBar(jMenuBar1);
 
@@ -183,14 +188,7 @@ public class Psikotest_add extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(76, 76, 76)
+                .addGap(280, 280, 280)
                 .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
@@ -200,20 +198,9 @@ public class Psikotest_add extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton5))
-                    .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -237,10 +224,6 @@ public class Psikotest_add extends javax.swing.JFrame {
     private void tfidPelamarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfidPelamarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tfidPelamarActionPerformed
-
-    private void jFormattedTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jFormattedTextField1ActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
@@ -286,33 +269,15 @@ public class Psikotest_add extends javax.swing.JFrame {
 //                tfidPsikotest.requestDefaultFocus();
                 return;
             }
-            sql = "insert into tbpsikotest values('"
-                    + stridPsikotest + "','" + stridPelamar + "','" + stridPsikolog + "','" + strhasil + "','"
-                    + strfilename + "')";
-
-            pst = conn.prepareStatement(sql);
-            pst.execute();
+//            sql = "insert into tbpsikotest values('"
+//                    + stridPsikotest + "','" + stridPelamar + "','" + stridPsikolog + "','" + strhasil + "','"
+//                    + strfilename + "')";
+//
+//            pst = conn.prepareStatement(sql);
+//            pst.execute();
             
+            insertdatapsikotest();
             
-            String url = "jdbc:mysql://localhost:3306/hai";
-            String user = "root";
-            String password = "abc";
-
-            String filePath;
-            filePath = lbfilename.getText();
-            conn = DriverManager.getConnection(url, user, password);
- 
-            sql = "update tbpsikotest set dokPsikotest = LOAD_FILE(?) where idPsikotest ='" + stridPsikotest + "'";
-            PreparedStatement statement = conn.prepareStatement(sql);
- 
-            statement.setString(1, filePath);
- 
-            int row = statement.executeUpdate();
-            if (row > 0) {
-                JOptionPane.showMessageDialog(this, "Successfully add data", "Psikotest", JOptionPane.INFORMATION_MESSAGE);
-                Get_Data();
-            }
-            conn.close();
 
         } catch (HeadlessException | SQLException ex) {
             JOptionPane.showMessageDialog(this, ex);
@@ -330,6 +295,28 @@ public class Psikotest_add extends javax.swing.JFrame {
         String NamaFile = x_file.getAbsolutePath();
         lbfilename.setText(NamaFile);
     }//GEN-LAST:event_btnInsertFileActionPerformed
+
+    private void mnviewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnviewActionPerformed
+        // TODO add your handling code here:
+        Psikotest_View frmview = new Psikotest_View();
+        frmview.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_mnviewActionPerformed
+
+    private void mneditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mneditActionPerformed
+        // TODO add your handling code here:
+        Psikotest_Edit frmedit = new Psikotest_Edit();
+        frmedit.setVisible(true);
+        this.setVisible(false);
+        
+    }//GEN-LAST:event_mneditActionPerformed
+
+    private void mnlogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnlogoutActionPerformed
+        // TODO add your handling code here:
+        Login frmlogin = new Login();
+        frmlogin.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_mnlogoutActionPerformed
 
     /**
      * @param args the command line arguments
@@ -385,16 +372,25 @@ public class Psikotest_add extends javax.swing.JFrame {
 
     public void insertdatapsikotest() {
         try {
-            conn = Connect.ConnectDB();
-            sql = "insert into tbPsikotest(idPsikotest, idPelamar, idPsikolog, hasil, dokPsikotest) values('"
-                    + stridPsikotest + "','"
-                    + stridPelamar + "','"
-                    + stridPsikolog + "','"
-                    + strhasil + "','"
-                    + "hextoraw(" + strfilename + "))";
+            String url = "jdbc:mysql://localhost:3306/hai";
+            String user = "root";
+            String password = "abc";
 
-            pst = conn.prepareStatement(sql);
-            pst.executeUpdate();
+            String filePath;
+            filePath = lbfilename.getText();
+            conn = DriverManager.getConnection(url, user, password);
+            sql = "insert into tbpsikotest values('"
+                    + stridPsikotest + "','" + stridPelamar + "','" + stridPsikolog + "','" + strhasil + "',LOAD_FILE(?))";
+            //sql = "update tbpsikotest set dokPsikotest = LOAD_FILE(?) where idPsikotest ='" + stridPsikotest + "'";
+            PreparedStatement statement = conn.prepareStatement(sql);
+ 
+            statement.setString(1, filePath);
+ 
+            int row = statement.executeUpdate();
+            if (row > 0) {
+                JOptionPane.showMessageDialog(this, "Successfully add data", "Psikotest", JOptionPane.INFORMATION_MESSAGE);
+                Get_Data();
+            }
             conn.close();
         } catch (SQLException ex) {
             Logger.getLogger(Psikotest_add.class.getName()).log(Level.SEVERE, null, ex);
@@ -406,22 +402,20 @@ public class Psikotest_add extends javax.swing.JFrame {
     private java.awt.Button btnAdd;
     private java.awt.Button btnCancel;
     private javax.swing.JButton btnInsertFile;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JFileChooser jFileChooser1;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JPopupMenu.Separator jSeparator1;
     private java.awt.Label label1;
     private java.awt.Label label2;
     private java.awt.Label label3;
     private java.awt.Label label4;
     private java.awt.Label label5;
     private javax.swing.JLabel lbfilename;
+    private javax.swing.JMenuItem mnedit;
+    private javax.swing.JMenuItem mnlogout;
+    private javax.swing.JMenuItem mnview;
     private java.awt.Panel panel1;
     private javax.swing.JTable tableview;
     private java.awt.TextField tfhasil;

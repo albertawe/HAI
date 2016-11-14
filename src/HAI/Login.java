@@ -16,7 +16,7 @@ import javax.swing.*;
 public class Login extends javax.swing.JFrame {
 
     MainMenu frmadmin = new MainMenu();
-    Psikotest_Main frmpsikotest = new Psikotest_Main();
+
     Connection con = null;
     ResultSet rs = null;
     PreparedStatement pst = null;
@@ -93,7 +93,7 @@ public class Login extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txtUserName);
-        txtUserName.setBounds(540, 300, 166, 17);
+        txtUserName.setBounds(540, 300, 166, 15);
 
         txtPassword.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(153, 153, 153)));
         txtPassword.setOpaque(false);
@@ -103,7 +103,7 @@ public class Login extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txtPassword);
-        txtPassword.setBounds(540, 330, 166, 17);
+        txtPassword.setBounds(540, 330, 166, 15);
 
         btnOK.setBackground(new java.awt.Color(0, 0, 0));
         btnOK.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/dsasdasda.PNG"))); // NOI18N
@@ -112,6 +112,11 @@ public class Login extends javax.swing.JFrame {
         btnOK.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnOKMouseClicked(evt);
+            }
+        });
+        btnOK.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOKActionPerformed(evt);
             }
         });
         getContentPane().add(btnOK);
@@ -136,7 +141,7 @@ public class Login extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(153, 153, 153));
         jLabel5.setText("Develop by");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(370, 470, 150, 25);
+        jLabel5.setBounds(370, 470, 150, 32);
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HAI/Logo-Hai.png"))); // NOI18N
         getContentPane().add(jLabel6);
@@ -187,7 +192,7 @@ public class Login extends javax.swing.JFrame {
                     //masuk ke mainform psikolog
 
                     this.hide();
-                      Psikotest_Main frmMainMenu = new Psikotest_Main();
+                    Psikotest_View frmpsikotest = new Psikotest_View();
                     frmpsikotest.setVisible(true);
 
                 } else {
@@ -254,6 +259,10 @@ public class Login extends javax.swing.JFrame {
 
         }
     }//GEN-LAST:event_txtPasswordKeyPressed
+
+    private void btnOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOKActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnOKActionPerformed
 
     /**
      * @param args the command line arguments

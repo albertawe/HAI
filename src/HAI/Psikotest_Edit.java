@@ -9,10 +9,13 @@ import java.awt.HeadlessException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -50,9 +53,6 @@ public class Psikotest_Edit extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
         panel1 = new java.awt.Panel();
         label1 = new java.awt.Label();
         label2 = new java.awt.Label();
@@ -68,35 +68,19 @@ public class Psikotest_Edit extends javax.swing.JFrame {
         button2 = new java.awt.Button();
         lbfilename = new javax.swing.JLabel();
         btnDelete = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         tableview = new javax.swing.JTable();
         tfsearch = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
+        mnadd = new javax.swing.JMenuItem();
+        mnview = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JPopupMenu.Separator();
+        mnlogout = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
-
-        jFormattedTextField1.setText("PHOTO");
-        jFormattedTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFormattedTextField1ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jFormattedTextField1);
-        jFormattedTextField1.setBounds(110, 200, 113, 98);
-
-        jLabel1.setText("Nama");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(110, 300, 113, 28);
-
-        jButton3.setText("ADD");
-        getContentPane().add(jButton3);
-        jButton3.setBounds(100, 340, 154, 23);
 
         label1.setText("ID Psikotest");
 
@@ -239,14 +223,6 @@ public class Psikotest_Edit extends javax.swing.JFrame {
         getContentPane().add(panel1);
         panel1.setBounds(260, 200, 490, 260);
 
-        jButton4.setText("EDIT");
-        getContentPane().add(jButton4);
-        jButton4.setBounds(100, 370, 154, 23);
-
-        jButton5.setText("VIEW");
-        getContentPane().add(jButton5);
-        jButton5.setBounds(100, 400, 154, 23);
-
         tableview.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -266,7 +242,7 @@ public class Psikotest_Edit extends javax.swing.JFrame {
         jScrollPane3.setViewportView(tableview);
 
         getContentPane().add(jScrollPane3);
-        jScrollPane3.setBounds(0, 0, 1030, 150);
+        jScrollPane3.setBounds(0, 0, 1030, 160);
 
         tfsearch.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -280,11 +256,34 @@ public class Psikotest_Edit extends javax.swing.JFrame {
         getContentPane().add(jLabel2);
         jLabel2.setBounds(290, 160, 110, 30);
 
-        jMenu1.setText("File");
-        jMenuBar1.add(jMenu1);
+        jMenu1.setText("Menu");
 
-        jMenu2.setText("Edit");
-        jMenuBar1.add(jMenu2);
+        mnadd.setText("Add New");
+        mnadd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnaddActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mnadd);
+
+        mnview.setText("View");
+        mnview.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnviewActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mnview);
+        jMenu1.add(jSeparator1);
+
+        mnlogout.setText("Logout");
+        mnlogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnlogoutActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mnlogout);
+
+        jMenuBar1.add(jMenu1);
 
         setJMenuBar(jMenuBar1);
 
@@ -317,10 +316,6 @@ public class Psikotest_Edit extends javax.swing.JFrame {
         
     }
     
-    private void jFormattedTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jFormattedTextField1ActionPerformed
-
     private void tfidPelamarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfidPelamarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tfidPelamarActionPerformed
@@ -370,11 +365,7 @@ public class Psikotest_Edit extends javax.swing.JFrame {
             }
 
             if (jlhbaris == 1) {
-                sql = "update tbdatapelamar set idPelamar='" + stridPelamar + "', idPsikolog='" + stridPsikolog + "', hasil='" + strhasil + "', '"
-                        + lbfilename + "' where idPsikotest='" + stridPsikotest + "'";
-
-                pst = con.prepareStatement(sql);
-                pst.execute();
+                updatedatapsikotest();
                 JOptionPane.showMessageDialog(this, "Successfully update data", "Psikotest", JOptionPane.INFORMATION_MESSAGE);
                 reset();
             }
@@ -501,6 +492,27 @@ public class Psikotest_Edit extends javax.swing.JFrame {
         lbfilename.setText(NamaFile);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void mnaddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnaddActionPerformed
+        // TODO add your handling code here:
+        Psikotest_add frmadd = new Psikotest_add();
+        frmadd.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_mnaddActionPerformed
+
+    private void mnviewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnviewActionPerformed
+        // TODO add your handling code here:
+        Psikotest_View frmview = new Psikotest_View();
+        frmview.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_mnviewActionPerformed
+
+    private void mnlogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnlogoutActionPerformed
+        // TODO add your handling code here:
+        Login frmlogin = new Login();
+        frmlogin.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_mnlogoutActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -535,28 +547,53 @@ public class Psikotest_Edit extends javax.swing.JFrame {
             }
         });
     }
+    
+    public void updatedatapsikotest(){
+        try {
+            String url = "jdbc:mysql://localhost:3306/hai";
+            String user = "root";
+            String password = "abc";
+
+            String filePath;
+            filePath = lbfilename.getText();
+            con = DriverManager.getConnection(url, user, password);
+            sql = "update tbpsikotest set idPelamar='" + stridPelamar + "', idPsikolog='" + stridPsikolog + "', hasil='" + strhasil + "',"
+                    + " dokPsikotest = LOAD_FILE(?) where idPsikotest='" + stridPsikotest + "'";
+            
+            PreparedStatement statement = con.prepareStatement(sql);
+ 
+            statement.setString(1, filePath);
+ 
+            int row = statement.executeUpdate();
+            if (row > 0) {
+                JOptionPane.showMessageDialog(this, "Successfully add data", "Psikotest", JOptionPane.INFORMATION_MESSAGE);
+                Get_Data();
+            }
+            con.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Psikotest_add.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDelete;
     private java.awt.Button btnUpdate;
     private java.awt.Button button2;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JPopupMenu.Separator jSeparator1;
     private java.awt.Label label1;
     private java.awt.Label label2;
     private java.awt.Label label3;
     private java.awt.Label label4;
     private java.awt.Label label5;
     private javax.swing.JLabel lbfilename;
+    private javax.swing.JMenuItem mnadd;
+    private javax.swing.JMenuItem mnlogout;
+    private javax.swing.JMenuItem mnview;
     private java.awt.Panel panel1;
     private javax.swing.JTable tableview;
     private java.awt.TextField tfhasil;
